@@ -5,7 +5,7 @@ import os
 from matplotlib import cm
 from matplotlib import mlab as ml
 
-system_name = 'PVP10 none Ag(100) surface'
+system_name = '2P PVP10 half half Ag(100) surface'
 
 if not os.path.exists('heatmap'):
     os.makedirs('heatmap')
@@ -16,12 +16,12 @@ class traj:
         self.unitcell_x = t.unitcell_lengths[0][0]
         self.unitcell_y = t.unitcell_lengths[0][1]
         self.unitcell_z = t.unitcell_lengths[0][2]
-        self.n_frame = t.n_frames
+        self.n_frame = t.n_frames-skip
         topology = t.topology
         topagatom = agatom_array
         topagposition = t.xyz[:, topagatom, 2]
         self.meantopag = np.mean(topagposition)
-        oxygenatom = [atom.index for atom in topology.atoms if (atom.name == '11')]
+        oxygenatom = [atom.index for atom in topology.atoms if (atom.name == '21')]
         self.opos = t.xyz[skip:, oxygenatom]
         self.opos_x = t.xyz[skip:, oxygenatom, 0].flatten()
         self.opos_y = t.xyz[skip:, oxygenatom, 1].flatten()
@@ -29,9 +29,8 @@ class traj:
         print read
         print self.n_frame
         
-        self.y, binEdges = np.histogram(np.ndarray.flatten(self.opos), nbin, density=False)
+        self.y, binEdges = np.histogram(np.ndarray.flatten(self.opos_z), nbin, density=False)
         self.dist_bin = binEdges[1]-binEdges[0] # Unit = nm
-        binEdges = binEdges-self.meantopag # Adjust to from top Ag surface
         binEdges = 10*binEdges # Convert to Angstroms
         self.bincenters = 0.5*(binEdges[1:]+binEdges[:-1])
         self.y = self.y/(self.unitcell_x*self.unitcell_y*self.dist_bin*self.n_frame) # Convert to density
@@ -60,8 +59,18 @@ class traj:
         y = NP.asarray([item for sublist in y for item in sublist])
         return x, y
 
-traj = traj('traj_npt.lammpstrj', 'traj_npt.pdb', range(512, 576)+range(704,768), 100, 100)
+traj = traj('traj_npt.lammpstrj', 'traj_npt.pdb', range(512, 576)+range(704,768), 100, 800)
 gridsize=40
+
+np.savetxt('density_o_pvp.txt', np.stack((traj.bincenters, traj.y)))
+
+plt.plot(traj.bincenters,traj.y, 'r-', lw=1.5)
+plt.xlabel('z (Angstrom)', fontsize=14)
+plt.ylabel(r'$\rho_O$ (#/$\AA^3$)', fontsize=14)
+plt.title(system_name, fontsize=14)
+plt.savefig('average_density_profile_o_pvp.png', bbox_inches='tight')
+plt.show()
+plt.close()
 
 # y vs z
 plt.subplot(111)
