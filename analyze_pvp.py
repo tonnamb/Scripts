@@ -5,7 +5,7 @@ import os
 from matplotlib import cm
 from matplotlib import mlab as ml
 
-system_name = 'DP PVP10 half half Ag(100) surface'
+system_name = 'PVP10 none Ag(100) surface'
 
 if not os.path.exists('heatmap'):
     os.makedirs('heatmap')
@@ -21,7 +21,7 @@ class traj:
         topagatom = agatom_array
         topagposition = t.xyz[:, topagatom, 2]
         self.meantopag = np.mean(topagposition)
-        oxygenatom = [atom.index for atom in topology.atoms if (atom.name == '24')]
+        oxygenatom = [atom.index for atom in topology.atoms if (atom.name == '11')]
         self.opos = t.xyz[skip:, oxygenatom]
         self.opos_x = t.xyz[skip:, oxygenatom, 0].flatten()
         self.opos_y = t.xyz[skip:, oxygenatom, 1].flatten()
@@ -60,7 +60,7 @@ class traj:
         y = NP.asarray([item for sublist in y for item in sublist])
         return x, y
 
-traj = traj('traj_npt.lammpstrj', 'traj_npt.pdb', range(512, 576)+range(704,768), 100, 800)
+traj = traj('traj_npt.lammpstrj', 'traj_npt.pdb', range(512, 576)+range(704,768), 100, 100)
 gridsize=40
 
 # y vs z
@@ -72,6 +72,7 @@ cb.set_label('Relative density of oxygen atoms', fontsize=14)
 plt.title(system_name+': y vs z')
 plt.xlabel(r'y ($\AA$)', fontsize=14)
 plt.ylabel(r'z ($\AA$)', fontsize=14)
+plt.ylim(0.0, 1.0)
 plt.savefig('heatmap/yz.png', bbox_inches='tight')
 plt.show()
 plt.close()
@@ -98,6 +99,7 @@ cb.set_label('Relative density of oxygen atoms', fontsize=14)
 plt.title(system_name+': x vs z')
 plt.xlabel(r'x ($\AA$)', fontsize=14)
 plt.ylabel(r'z ($\AA$)', fontsize=14)
+plt.ylim(0.0, 1.0)
 plt.savefig('heatmap/xz.png', bbox_inches='tight')
 plt.show()
 plt.close()
