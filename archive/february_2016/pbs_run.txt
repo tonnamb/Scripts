@@ -1,0 +1,26 @@
+#PBS -l nodes=8
+#PBS -l walltime=24:00:00
+#PBS -j oe
+#PBS -M tub179@psu.edu
+#PBS -m bae
+#PBS -N 101_MB3100_9ns_nc
+#PBS -l pmem=2gb
+#PBS -q lionxj-kaf2
+
+cd $PBS_O_WORKDIR
+
+echo " "
+echo "Starting job on `hostname` at `date`"
+echo " "
+
+module load openmpi/intel/1.6.5
+module load lammps/17Dec13
+module load python
+
+PATH="/gpfs/home/tub179/work/Research:$PATH"
+
+python run_npt.py
+
+echo " "
+echo "Completing job on `hostname` at `date`"
+echo " "

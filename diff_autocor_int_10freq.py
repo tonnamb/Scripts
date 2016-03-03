@@ -1,0 +1,106 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import simps
+from statsmodels.tsa.stattools import acf
+import os
+
+system_name = r'PVP5 Ag(111) k = 1.7 eV/$\AA^2$'
+spec_folder = "data_unslice"
+spec_nwin = 60
+cutoff_array = [100, 200, 300, 400, 500, 600]
+
+for c in range(len(cutoff_array)):
+	cutoff = cutoff_array[c]
+	if not os.path.exists('10freq\diff_cutoff_{0}'.format(cutoff)):
+		os.makedirs('10freq\diff_cutoff_{0}'.format(cutoff))
+
+class Data:
+
+    def __init__(self, folder, nwin):
+        self.RC = [[] for i in range(nwin)]
+        self.Center = []
+        self.MeanRC = []
+        self.VarRC = []
+        self.NStep = []
+
+        for i in range(nwin):
+            with open(folder + '/' + str(i+1)) as f:
+                run_once = 0
+                count = 0
+                for line in f:
+                    if count>10000:
+                        self.RC[i].append(float(line.strip().split()[0]))
+                    count = count + 1
+                    if run_once == 0:
+                        self.Center.append(float(line.strip().split()[2]))
+                        self.Spring = float(line.strip().split()[1])
+                        run_once = 1
+            self.MeanRC.append(np.mean(self.RC[i]))
+            self.VarRC.append(np.var(self.RC[i]))
+            self.NStep.append(len(self.RC[i]))
+
+data = Data(spec_folder, spec_nwin)
+
+# print 'Center: {0}'.format(data.Center)
+# print 'MeanRC: {0}'.format(data.MeanRC)
+# print 'VarRC: {0}'.format(data.VarRC)
+# print 'NStep: {0}'.format(data.NStep)
+
+def estimated_autocorrelation(x):
+	# http://stackoverflow.com/questions/14297012/estimate-autocorrelation-using-python
+    n = len(x)
+    variance = np.var(x)
+    x = x-np.mean(x)
+    r = np.correlate(x, x, mode = 'full')[-n:]
+    assert np.allclose(r, np.array([(x[:n-k]*x[-(n-k):]).sum() for k in range(n)]))
+    result = r/(variance*(np.arange(n, 0, -1)))
+    return result
+
+np.savetxt('meanrc.txt', data.MeanRC)
+
+calc_diff_array = [[] for i in range(len(cutoff_array))]
+	
+for i in range(spec_nwin):
+	x = range(data.NStep[i])
+	y = acf(data.RC[i], nlags=cutoff_array[-1]+1)
+	for c in range(len(cutoff_array)):
+		cutoff = cutoff_array[c]
+		xcut = np.asarray(x[:cutoff])*0.0015*10
+		# Conversion from timestep to ps [=] 0.0015 picosecond timesteps * 10 colvarsTrajFrequency
+		ycut = y[:cutoff]
+		plt.plot(xcut, ycut)
+		plt.xlabel('time (ps)')
+		plt.ylabel('autocorrelation')
+		plt.title('Window {0}'.format(i+1))
+		plt.savefig('10freq/diff_cutoff_{0}/auto_{1}.png'.format(cutoff, i+1), bbox_inches='tight')
+		plt.close()
+
+		integrate = simps(ycut, dx=10*10**(-15))
+		# dx = 1 timestep = 15*10**(-15) seconds [=] 1.5 femtosecond * 10 colvarsTrajFrequency
+
+		calc_diff = data.VarRC[i]*(10**(-8))**2/integrate
+		# calc_diff [=] cm^2/s
+		# (10**(-8))**2 is the conversion from Angstrom^2 to cm^2
+
+		print 'Cutoff {0}, Window {1}: D = {2} cm^2/s'.format(cutoff,i+1,calc_diff)
+		
+		calc_diff_array[c].append(calc_diff)
+
+calc_diff_array = np.asarray(calc_diff_array)
+for c in range(len(cutoff_array)):
+	cutoff = cutoff_array[c]
+	np.savetxt('10freq/diff_cutoff_{0}/diff_cutoff_{0}.txt'.format(cutoff), calc_diff_array[c])
+
+plt.plot(data.MeanRC, calc_diff_array[0], label='{0} ({1} ps)'.format(cutoff_array[0], cutoff_array[0]*0.15))
+plt.plot(data.MeanRC, calc_diff_array[1], label='{0} ({1} ps)'.format(cutoff_array[1], cutoff_array[1]*0.15))
+plt.plot(data.MeanRC, calc_diff_array[2], label='{0} ({1} ps)'.format(cutoff_array[2], cutoff_array[2]*0.15))
+plt.plot(data.MeanRC, calc_diff_array[3], label='{0} ({1} ps)'.format(cutoff_array[3], cutoff_array[3]*0.15))
+plt.plot(data.MeanRC, calc_diff_array[4], label='{0} ({1} ps)'.format(cutoff_array[4], cutoff_array[4]*0.15))
+plt.plot(data.MeanRC, calc_diff_array[5], label='{0} ({1} ps)'.format(cutoff_array[5], cutoff_array[5]*0.15))
+plt.ylabel(r'Diffusion coefficient ($cm^2/s$)')
+plt.xlabel(r'z ($\AA$)')
+plt.title(system_name)
+plt.legend(frameon=False, loc=0)
+plt.savefig('10freq/plot_diff_cutoff.png', bbox_inches='tight')
+plt.show()
+plt.close()

@@ -1,0 +1,13 @@
+#!/bin/bash
+#SBATCH -J eq_xinPVP5_111                       
+#SBATCH -o eq_xinPVP5_111.o%j                   
+#SBATCH -n 32                                      
+#SBATCH -p normal                                 # queue (partition) -- normal, development, etc.
+#SBATCH -t 48:00:00                                # run time (hh:mm:ss)
+#SBATCH --mail-user=tub179@psu.edu
+#SBATCH --mail-type=begin                         
+#SBATCH --mail-type=end                           
+#SBATCH -A TG-DMR110061
+PATH="/home1/03207/tub179/exe:$PATH"
+python run_slurm.py
+

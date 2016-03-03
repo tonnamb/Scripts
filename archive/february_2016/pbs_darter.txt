@@ -1,0 +1,23 @@
+#PBS -S /bin/bash
+#PBS -A TG-DMR110061
+#PBS -l size=16
+#PBS -l walltime=4:00:00
+#PBS -j oe
+#PBS -M tub179@psu.edu
+#PBS -m bae
+#PBS -N pull-PVP5_100
+cd $PBS_O_WORKDIR
+
+echo " "
+echo "Starting job on `hostname` at `date`"
+echo " "
+
+module load python
+
+PATH="/nics/d/home/tub179/lammps:$PATH"
+
+python run_darter.py
+
+echo " "
+echo "Completing job on `hostname` at `date`"
+echo " "

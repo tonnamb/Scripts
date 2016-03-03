@@ -1,0 +1,35 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+current=`date +%s`
+lastTouch=`awk 'END{print}' ~/.touchLog`
+dayElapsed=$(echo "($current-$lastTouch)/(3600*24)" | bc )
+
+if [ $dayElapsed -ge 28 ]; then
+    echo "$dayElapsed days have passed since last update. Now touching '~\scratch' directory, please wait..."
+    find ~/scratch/. -exec touch {} \;
+    echo "Updating .touchLog file..."
+    echo $current >> ~/.touchLog
+    echo "All done!" 
+fi
+
+
+# User specific aliases and functions
+
+module load openmpi/intel/1.6.5
+module load openmpi/gnu/1.8.1
+# module load lammps/17Dec13
+module load python/2.7.3
+module load vasp5/5.3.5
+module load gaussian/g09b1
+PATH="/gpfs/home/tub179/work/Research:$PATH"
+PATH="/gpfs/home/tub179/.local/bin:$PATH"
+VASP_SCRIPT="/gpfs/home/tub179/.local/bin/runjasp.py:$VASP_SCRIPT"
+VASP_SCRIPT="/gpfs/home/tub179/.local/lib/python2.7/site-packages/jasp-0.9-py2.7.egg/jasp/bin/run_vasp.py:$VASP_SCRIPT"
+export VASP_PP_PATH=/usr/global/intel-13/openmpi-1.6.x/vasp/5.3.5/pp
+# module load vtk
+export VASP_COMMAND='vasp'

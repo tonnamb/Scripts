@@ -1,0 +1,56 @@
+topo readlammpsdata system.data full
+
+mol new               37_window/traj_npt.lammpstrj
+mol rename         1 37
+
+# MB3
+
+topo readlammpsdata system.data full
+
+mol top            0
+mol addrep         0
+mol addrep         0
+mol modstyle    0  0 VDW
+mol modcolor    0  0 Chain
+mol modselect   0  0 name 12
+mol modmaterial 0  0 Diffuse
+mol modstyle    1  0 Licorice
+mol modcolor    1  0 Conformation
+mol modselect   1  0 name 1 2 3 4 5 6 7
+mol modstyle    2  0 Lines
+mol modcolor    2  0 Restype
+mol modselect   2  0 name 8 9 10 11
+mol modmaterial 2  0 Transparent
+pbc wrap -compound res -all
+pbc box
+
+color Display Background 8
+color Chain X 6
+color Conformation all 1
+color Restype Unassigned 9
+
+# PVP
+
+topo readlammpsdata system.data full
+
+mol top            0
+mol addrep         0
+mol addrep         0
+mol modstyle    0  0  VDW
+mol modcolor    0  0  Chain
+mol modselect   0  0  name 16
+mol modmaterial 0  0  Diffuse
+mol modstyle    1  0  Licorice 
+mol modcolor    1  0  Conformation
+mol modselect   1  0  name 1 2 3 4 5 6 7 8 9 10 11
+mol modstyle    2  0  Lines
+mol modcolor    2  0  Restype
+mol modselect   2  0  name 12 13 14 15
+mol modmaterial 2  0  Transparent
+pbc wrap -compound res -all
+pbc box
+	
+color Display Background 8
+color Chain X 6
+color Conformation all 1
+color Restype Unassigned 9

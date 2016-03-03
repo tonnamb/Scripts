@@ -1,0 +1,20 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific aliases and functions
+
+current=`date +%s`
+lastTouch=`awk 'END{print}' ~/.touchLog`
+dayElapsed=$(echo "($current-$lastTouch)/(3600*24)" | bc )
+
+if [ $dayElapsed -ge 28 ]; then
+    echo "$dayElapsed days have passed since last update. Now touching '~\scratch' directory, please wait..."
+    find ~/scratch/. -exec touch {} \;
+    echo "Updating .touchLog file..."
+    echo $current >> ~/.touchLog
+    echo "All done!" 
+fi

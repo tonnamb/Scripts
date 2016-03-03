@@ -1,0 +1,29 @@
+mkdir                                  2_Restart
+cp 1_Restart/Ag_O1X5.5_O2X0.55.eam.fs  2_Restart/
+cp 1_Restart/pbs_run.txt               2_Restart/
+cp 1_Restart/NVT.restart.2             2_Restart/
+cp 1_Restart/run_npt.py                2_Restart/
+cp 1_Restart/system.in                 2_Restart/
+cp 1_Restart/slurm.txt                 2_Restart/
+
+mkdir                                 1_Restart
+cp Ag_O1X5.5_O2X0.55.eam.fs           1_Restart/
+cp pbs_run.txt                        1_Restart/
+cp NVT.restart.1                      1_Restart/
+cp run_npt.py                         1_Restart/
+cp system.in                          1_Restart/
+
+cp slurm.txt                          1_Restart/
+
+mkdir                                   no_colvars
+cp Ag_O1X5.5_O2X0.55.eam.fs             no_colvars/
+cp US.window101.restart.9ns             no_colvars/
+cp run_npt.py                           no_colvars/
+cp system.in                            no_colvars/
+
+mkdir                                  1_Restart
+cp Ag_O1X5.5_O2X0.55.eam.fs            1_Restart/
+cp pbs_run.txt                         1_Restart/
+cp NVT.restart.1                       1_Restart/
+cp run_npt.py                          1_Restart/
+cp system.in                           1_Restart/

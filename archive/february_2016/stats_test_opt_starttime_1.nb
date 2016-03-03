@@ -1,0 +1,2813 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[    113734,       2804]
+NotebookOptionsPosition[    109155,       2659]
+NotebookOutlinePosition[    109499,       2674]
+CellTagsIndexPosition[    109456,       2671]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}]], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SetDirectory", "[", 
+  RowBox[{"NotebookDirectory", "[", "]"}], "]"}]], "Input"],
+
+Cell[BoxData["\<\"D:\\\\tonnam_backup\\\\Research_scratch\\\\EG_Ag_2PDO\\\\\
+Ag100_allsides\\\\bind_smaller_system\\\\100_windows_umbrella_sampling\\\\1ns_\
+2.6\\\\k_0.7\\\\ui\"\>"], "Output",
+ CellChangeTimes->{
+  3.607782715444001*^9, 3.6077827549602613`*^9, 3.607784397601215*^9, {
+   3.607789107780622*^9, 3.6077891155250645`*^9}, 3.6077891852430525`*^9, 
+   3.607789267063732*^9, {3.6077936138103523`*^9, 3.607793675932905*^9}, {
+   3.607793709093802*^9, 3.6077938232043285`*^9}, 3.607793880473604*^9, 
+   3.6077944201054697`*^9, 3.6077944724634643`*^9, {3.607794945481519*^9, 
+   3.6077950563698616`*^9}, {3.607854941098072*^9, 3.6078549674655805`*^9}, {
+   3.6078559708479705`*^9, 3.607856037009755*^9}, {3.6080493988206544`*^9, 
+   3.6080494152705956`*^9}, 3.6080500659898143`*^9, {3.608050159286151*^9, 
+   3.6080502012565513`*^9}, {3.60805106299584*^9, 3.6080510893593473`*^9}, 
+   3.6080511222612295`*^9, 3.608086551878688*^9, 3.6080866028846054`*^9, {
+   3.608165814676281*^9, 3.608165838384637*^9}, {3.6081659109387865`*^9, 
+   3.608165919433273*^9}, 3.608166152408598*^9, 3.6081662035905256`*^9, 
+   3.6081662717914267`*^9, 3.6081664650014777`*^9, 3.6081665453580737`*^9, 
+   3.608166605303502*^9, 3.6081666793287363`*^9, {3.6081667641955905`*^9, 
+   3.608166786063841*^9}, {3.608167159908224*^9, 3.608167166623608*^9}, 
+   3.6082065394897594`*^9, 3.6082083398577347`*^9, 3.6082116276087832`*^9, 
+   3.608212036552173*^9, 3.608212108991317*^9, 3.6082122738817477`*^9, {
+   3.60821247953551*^9, 3.608212509063199*^9}, 3.608212666854224*^9, 
+   3.6082129144513865`*^9, 3.6082134123128624`*^9, 3.6082135619424205`*^9, 
+   3.6082140279300737`*^9, 3.6082141945156016`*^9, 3.608214804637499*^9, 
+   3.608389262625661*^9, 3.6083936126149426`*^9, 3.6101137458817368`*^9, 
+   3.610115597864664*^9, 3.610117186376522*^9, 3.6104514515227523`*^9, 
+   3.6106251737710643`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Nwin", "=", "101"}], ";"}]], "Input",
+ CellChangeTimes->{{3.608214752598522*^9, 3.608214757949828*^9}, {
+  3.6083936037874374`*^9, 3.608393603846441*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"data", "=", 
+   RowBox[{
+    RowBox[{"Reap", "[", 
+     RowBox[{
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"i", "=", "1"}], ",", 
+        RowBox[{"i", "\[LessEqual]", "Nwin"}], ",", 
+        RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"log", "=", 
+          RowBox[{"OpenRead", "[", 
+           RowBox[{"StringJoin", "[", 
+            RowBox[{"\"\<data/\>\"", ",", 
+             RowBox[{"ToString", "[", "i", "]"}]}], "]"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"data", "=", 
+          RowBox[{"ReadList", "[", 
+           RowBox[{"log", ",", 
+            RowBox[{"{", 
+             RowBox[{"Number", ",", "Number", ",", "Number"}], "}"}]}], 
+           "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"Sow", "[", 
+          RowBox[{"data", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "1"}], "]"}], "]"}], "]"}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"Close", "[", "log", "]"}], ";"}]}], "\[IndentingNewLine]", 
+       "]"}], ";"}], "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6077828650085554`*^9, 3.607782937431698*^9}, {
+  3.608214762268075*^9, 3.608214763184128*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Length", "[", 
+  RowBox[{"data", "[", 
+   RowBox[{"[", "20", "]"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.607783055568455*^9, 3.6077830600247097`*^9}, {
+  3.6077844009734077`*^9, 3.607784411081986*^9}}],
+
+Cell[BoxData["10000"], "Output",
+ CellChangeTimes->{
+  3.607783060405732*^9, {3.6077844017384515`*^9, 3.6077844115050106`*^9}, {
+   3.6077891081506433`*^9, 3.6077891158980865`*^9}, 3.6077891856210737`*^9, 
+   3.607789267435754*^9, {3.607793614182373*^9, 3.6077936763259277`*^9}, {
+   3.6077937094738235`*^9, 3.60779382357335*^9}, 3.607793880848626*^9, 
+   3.607794420478491*^9, 3.607794472843486*^9, {3.6077949458555408`*^9, 
+   3.6077950567468834`*^9}, {3.6078549417681103`*^9, 3.607854968146619*^9}, {
+   3.6078559715180087`*^9, 3.6078560376887937`*^9}, {3.6080493988906584`*^9, 
+   3.6080494153606005`*^9}, 3.6080500660438175`*^9, {3.608050159345154*^9, 
+   3.6080502013105545`*^9}, {3.6080510630888453`*^9, 3.6080510894433527`*^9}, 
+   3.6080511223492346`*^9, 3.6080865519596925`*^9, 3.60808660297661*^9, {
+   3.6081658150663033`*^9, 3.6081658384626417`*^9}, {3.6081659116198263`*^9, 
+   3.608165919801294*^9}, 3.6081661527776194`*^9, 3.608166203975548*^9, 
+   3.608166272165448*^9, 3.6081664653704987`*^9, 3.6081665457270947`*^9, 
+   3.608166605670523*^9, 3.6081666798377657`*^9, {3.6081667645646114`*^9, 
+   3.6081667864338627`*^9}, {3.6081671602702446`*^9, 3.608167166988629*^9}, 
+   3.6082065398917823`*^9, 3.60820834030276*^9, 3.6082116279818044`*^9, 
+   3.608212036645179*^9, 3.6082121090833216`*^9, 3.6082122739667525`*^9, {
+   3.6082124796295156`*^9, 3.6082125091542044`*^9}, 3.60821266694123*^9, 
+   3.608212914540391*^9, 3.608213412398867*^9, 3.6082135620304255`*^9, 
+   3.608214028018079*^9, 3.608214194607607*^9, 3.608214804970518*^9, 
+   3.6083892649347925`*^9, 3.608393614601056*^9, 3.610113749506944*^9, 
+   3.610115599676768*^9, 3.61011719193784*^9, 3.6104514577991114`*^9, 
+   3.610625175557167*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"StartTime", "=", "1"}], ";"}]], "Input",
+ CellChangeTimes->{{3.607783043576769*^9, 3.607783082722008*^9}, {
+   3.6077835880449114`*^9, 3.607783604848872*^9}, 3.6077844487681417`*^9, 
+   3.6077891823038845`*^9, 3.607789265527644*^9, {3.607793619034651*^9, 
+   3.607793644878129*^9}, 3.6077937306770363`*^9, 3.607793783611064*^9, {
+   3.6077949791774464`*^9, 3.6077949908541145`*^9}, {3.6078549543158283`*^9, 
+   3.607854964953437*^9}, {3.6078559876579323`*^9, 3.6078560168185997`*^9}, 
+   3.608049404266966*^9, {3.6081665384076757`*^9, 3.6081665432629538`*^9}, {
+   3.6081667619384613`*^9, 3.6081667621364727`*^9}, {3.6082124748702435`*^9, 
+   3.608212506786069*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"DataStart", "=", 
+   RowBox[{"data", "[", 
+    RowBox[{"[", 
+     RowBox[{"All", ",", 
+      RowBox[{"StartTime", ";;", 
+       RowBox[{"-", "1"}]}]}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.607783606158947*^9, 3.6077836506924944`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MinSegWidth", "=", 
+  RowBox[{"Ceiling", "[", 
+   RowBox[{
+    RowBox[{"Length", "[", 
+     RowBox[{"DataStart", "[", 
+      RowBox[{"[", "1", "]"}], "]"}], "]"}], "/", "100"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6082120693040466`*^9, 3.6082120981116943`*^9}}],
+
+Cell[BoxData["100"], "Output",
+ CellChangeTimes->{{3.608212098713729*^9, 3.6082121091143236`*^9}, 
+   3.608212273987754*^9, {3.608212479658518*^9, 3.608212509183206*^9}, 
+   3.608212666970231*^9, 3.608212914570393*^9, 3.608213412426869*^9, 
+   3.608213562063428*^9, 3.60821402804608*^9, 3.608214194636609*^9, 
+   3.6082148049975195`*^9, 3.608389264973795*^9, 3.6083936146180573`*^9, 
+   3.6101137495279455`*^9, 3.6101156000547895`*^9, 3.61011719194284*^9, 
+   3.610451457822113*^9, 3.610625175580168*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MaxSegWidth", "=", 
+  RowBox[{"Floor", "[", 
+   RowBox[{
+    RowBox[{"Length", "[", 
+     RowBox[{"DataStart", "[", 
+      RowBox[{"[", "1", "]"}], "]"}], "]"}], "/", "25"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.608211553589549*^9, 3.608211617191187*^9}, {
+  3.6082120803966813`*^9, 3.6082120813197336`*^9}}],
+
+Cell[BoxData["400"], "Output",
+ CellChangeTimes->{{3.6082115718415937`*^9, 3.6082116280048056`*^9}, 
+   3.6082120366701803`*^9, {3.608212101232873*^9, 3.6082121091333246`*^9}, 
+   3.6082122740017548`*^9, {3.6082124796745186`*^9, 3.608212509201207*^9}, 
+   3.608212666989232*^9, 3.6082129145873938`*^9, 3.60821341244487*^9, 
+   3.608213562082429*^9, 3.6082140280630813`*^9, 3.6082141946546097`*^9, 
+   3.6082148050145206`*^9, 3.6083892649967966`*^9, 3.6083936146210575`*^9, 
+   3.610113749539946*^9, 3.6101156000737906`*^9, 3.6101171919458404`*^9, 
+   3.610451457836114*^9, 3.6106251755931687`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"DataSeg", "=", 
+   RowBox[{
+    RowBox[{"Reap", "[", " ", 
+     RowBox[{
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"SegWidth", "=", "MinSegWidth"}], ",", 
+        RowBox[{"SegWidth", "\[LessEqual]", "MaxSegWidth"}], ",", 
+        RowBox[{"SegWidth", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"DataSeg", "=", 
+          RowBox[{
+           RowBox[{"Reap", "[", 
+            RowBox[{
+             RowBox[{"For", "[", 
+              RowBox[{
+               RowBox[{"j", "=", "1"}], ",", 
+               RowBox[{"j", "\[LessEqual]", "Nwin"}], ",", 
+               RowBox[{"j", "++"}], ",", "\[IndentingNewLine]", 
+               RowBox[{
+                RowBox[{"DataSeg", "=", 
+                 RowBox[{
+                  RowBox[{"Reap", "[", 
+                   RowBox[{
+                    RowBox[{"For", "[", 
+                    RowBox[{
+                    RowBox[{"i", "=", "1"}], ",", 
+                    RowBox[{"i", "\[LessEqual]", 
+                    RowBox[{"Ceiling", "[", 
+                    RowBox[{
+                    RowBox[{"Length", "[", 
+                    RowBox[{"DataStart", "[", 
+                    RowBox[{"[", "j", "]"}], "]"}], "]"}], "/", "SegWidth"}], 
+                    "]"}]}], ",", 
+                    RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"i", "\[Equal]", 
+                    RowBox[{"Ceiling", "[", 
+                    RowBox[{
+                    RowBox[{"Length", "[", 
+                    RowBox[{"DataStart", "[", 
+                    RowBox[{"[", "j", "]"}], "]"}], "]"}], "/", "SegWidth"}], 
+                    "]"}]}], ",", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Length", "[", 
+                    RowBox[{"DataStart", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"j", ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"i", "-", "1"}], ")"}], "*", "SegWidth"}], "+", 
+                    "1"}], ";;", 
+                    RowBox[{"-", "1"}]}]}], "]"}], "]"}], "]"}], ">", "1"}], 
+                    ",", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"BlockMean", "=", 
+                    RowBox[{"Mean", "[", 
+                    RowBox[{"DataStart", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"j", ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"i", "-", "1"}], ")"}], "*", "SegWidth"}], "+", 
+                    "1"}], ";;", 
+                    RowBox[{"-", "1"}]}]}], "]"}], "]"}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"BlockStd", "=", 
+                    RowBox[{"StandardDeviation", "[", 
+                    RowBox[{"DataStart", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"j", ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"i", "-", "1"}], ")"}], "*", "SegWidth"}], "+", 
+                    "1"}], ";;", 
+                    RowBox[{"-", "1"}]}]}], "]"}], "]"}], "]"}]}], ";"}]}], 
+                    "]"}], ";"}], ",", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"BlockMean", "=", 
+                    RowBox[{"Mean", "[", 
+                    RowBox[{"DataStart", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"j", ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"i", "-", "1"}], ")"}], "*", "SegWidth"}], "+", 
+                    "1"}], ";;", 
+                    RowBox[{"i", "*", "SegWidth"}]}]}], "]"}], "]"}], "]"}]}],
+                     ";", "\[IndentingNewLine]", 
+                    RowBox[{"BlockStd", "=", 
+                    RowBox[{"StandardDeviation", "[", 
+                    RowBox[{"DataStart", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"j", ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"i", "-", "1"}], ")"}], "*", "SegWidth"}], "+", 
+                    "1"}], ";;", 
+                    RowBox[{"i", "*", "SegWidth"}]}]}], "]"}], "]"}], 
+                    "]"}]}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"Sow", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"BlockMean", ",", "BlockStd"}], "}"}], "]"}], 
+                    ";"}]}], "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+                  RowBox[{"[", 
+                   RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";", 
+                "\[IndentingNewLine]", 
+                RowBox[{"Sow", "[", "DataSeg", "]"}], ";"}]}], 
+              "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+           RowBox[{"[", 
+            RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"Sow", "[", "DataSeg", "]"}], ";"}]}], "\[IndentingNewLine]",
+        "]"}], ";"}], "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.608166844602189*^9, 3.6081669566826*^9}, {
+   3.608166988482419*^9, 3.608166991765607*^9}, {3.608167076024426*^9, 
+   3.6081672142783337`*^9}, {3.608211620069352*^9, 3.6082116230005198`*^9}, {
+   3.6082121043930535`*^9, 3.6082121061941566`*^9}, 3.6082147730766935`*^9, 
+   3.6290029739676886`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Length", "[", "DataSeg", "]"}]], "Input",
+ CellChangeTimes->{{3.608167229039178*^9, 3.6081672433519964`*^9}, 
+   3.608167308671733*^9}],
+
+Cell[BoxData["301"], "Output",
+ CellChangeTimes->{{3.6081672325613794`*^9, 3.6081672438110228`*^9}, 
+   3.6081673090707555`*^9, 3.608206551535448*^9, 3.608208350983371*^9, 
+   3.6082116383463974`*^9, 3.608212036809188*^9, 3.6082121099023685`*^9, 
+   3.608212274773799*^9, {3.608212480138545*^9, 3.6082125099902525`*^9}, 
+   3.6082126677622766`*^9, 3.608212915357438*^9, 3.608213413220914*^9, 
+   3.608213562854473*^9, 3.6082140288391256`*^9, 3.6082141954206533`*^9, 
+   3.608214808349711*^9, 3.608389317392793*^9, 3.6083936680751143`*^9, 
+   3.6101137965746365`*^9, 3.6101156477295165`*^9, 3.610117330599771*^9, 
+   3.6104519366985025`*^9, 3.6106252248889885`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Length", "[", 
+  RowBox[{"DataSeg", "[", 
+   RowBox[{"[", 
+    RowBox[{"1", ",", "1", ",", "All", ",", "1"}], "]"}], "]"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.6081673483760033`*^9, 3.6081673590966167`*^9}}],
+
+Cell[BoxData["100"], "Output",
+ CellChangeTimes->{
+  3.6081673595546427`*^9, 3.6082065515604496`*^9, 3.608208351000372*^9, 
+   3.6082116383743987`*^9, 3.608212036863191*^9, 3.6082121099183693`*^9, 
+   3.6082122747857995`*^9, {3.608212480158546*^9, 3.6082125101072593`*^9}, 
+   3.6082126677812777`*^9, 3.6082129153774395`*^9, 3.6082134132409153`*^9, 
+   3.608213562874474*^9, 3.608214028859127*^9, 3.6082141954376545`*^9, 
+   3.608214808365712*^9, 3.608389317407794*^9, 3.6083936681041164`*^9, 
+   3.610113796586637*^9, 3.6101156477405167`*^9, 3.610117330622772*^9, 
+   3.610451936702503*^9, 3.6106252249039893`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<block_mean.csv\>\"", ",", 
+    RowBox[{"Insert", "[", 
+     RowBox[{
+      RowBox[{"Transpose", "[", 
+       RowBox[{"DataSeg", "[", 
+        RowBox[{"[", 
+         RowBox[{"All", ",", "All", ",", "1"}], "]"}], "]"}], "]"}], ",", 
+      RowBox[{"Range", "[", "Nwin", "]"}], ",", "1"}], "]"}], ",", 
+    "\"\<CSV\>\""}], "]"}], "*)"}]], "Input",
+ CellChangeTimes->{{3.607785185018253*^9, 3.60778522587659*^9}, {
+   3.6077853159327407`*^9, 3.607785340253132*^9}, {3.6077854724206915`*^9, 
+   3.6077855044705243`*^9}, {3.607785536980384*^9, 3.6077855387594852`*^9}, {
+   3.6077860016649623`*^9, 3.607786011041498*^9}, 3.6077880939446335`*^9, {
+   3.607793596178344*^9, 3.6077935984544735`*^9}, 3.60821477703692*^9}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<block_std.csv\>\"", ",", 
+    RowBox[{"Insert", "[", 
+     RowBox[{
+      RowBox[{"Transpose", "[", 
+       RowBox[{"DataSeg", "[", 
+        RowBox[{"[", 
+         RowBox[{"All", ",", "All", ",", "1"}], "]"}], "]"}], "]"}], ",", 
+      RowBox[{"Range", "[", "Nwin", "]"}], ",", "1"}], "]"}], ",", 
+    "\"\<CSV\>\""}], "]"}], "*)"}]], "Input",
+ CellChangeTimes->{{3.607785513562044*^9, 3.6077855428337183`*^9}, {
+   3.607786014011668*^9, 3.6077860198910046`*^9}, 3.6077880965297813`*^9, {
+   3.607793600917615*^9, 3.6077936030307355`*^9}, 3.608214777627954*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Mann", "-", 
+    RowBox[{"Kendall", " ", "test", " ", "for", " ", "mean"}], " ", "-", " ", 
+    "Trend"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"MKTestMean", "=", 
+    RowBox[{
+     RowBox[{"Reap", "[", 
+      RowBox[{
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"a", "=", "1"}], ",", 
+         RowBox[{"a", "\[LessEqual]", 
+          RowBox[{"Length", "[", "DataSeg", "]"}]}], ",", 
+         RowBox[{"a", "++"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"MKTestMean", "=", 
+           RowBox[{
+            RowBox[{"Reap", "[", 
+             RowBox[{
+              RowBox[{"For", "[", 
+               RowBox[{
+                RowBox[{"i", "=", "1"}], ",", 
+                RowBox[{"i", "\[LessEqual]", "Nwin"}], ",", 
+                RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{"big", "=", "0"}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"n", "=", 
+                  RowBox[{"Length", "[", 
+                   RowBox[{"DataSeg", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i", ",", "All", ",", "1"}], "]"}], 
+                    "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"For", "[", 
+                  RowBox[{
+                   RowBox[{"j", "=", "1"}], ",", 
+                   RowBox[{"j", "\[LessEqual]", 
+                    RowBox[{"(", 
+                    RowBox[{"n", "-", "1"}], ")"}]}], ",", 
+                   RowBox[{"j", "++"}], ",", "\[IndentingNewLine]", 
+                   RowBox[{
+                    RowBox[{"For", "[", 
+                    RowBox[{
+                    RowBox[{"k", "=", 
+                    RowBox[{"j", "+", "1"}]}], ",", 
+                    RowBox[{"k", "\[LessEqual]", "n"}], ",", 
+                    RowBox[{"k", "++"}], ",", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"DataSeg", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i", ",", "All", ",", "1"}], "]"}], 
+                    "]"}], "[", 
+                    RowBox[{"[", "j", "]"}], "]"}], ">", 
+                    RowBox[{
+                    RowBox[{"DataSeg", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i", ",", "All", ",", "1"}], "]"}], 
+                    "]"}], "[", 
+                    RowBox[{"[", "k", "]"}], "]"}]}], ",", 
+                    RowBox[{"big", "=", 
+                    RowBox[{"big", "+", "1"}]}]}], "]"}], ";"}]}], 
+                    "\[IndentingNewLine]", "]"}], ";"}]}], 
+                  "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"S", "=", 
+                  RowBox[{
+                   RowBox[{"2", "*", "big"}], "-", 
+                   RowBox[{"Binomial", "[", 
+                    RowBox[{"n", ",", "2"}], "]"}]}]}], ";", 
+                 "\[IndentingNewLine]", 
+                 RowBox[{"sigmaS", "=", 
+                  RowBox[{
+                   RowBox[{"(", 
+                    RowBox[{"n", "*", 
+                    RowBox[{"(", 
+                    RowBox[{"n", "-", "1"}], ")"}], "*", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"2", "*", "n"}], "+", "5"}], ")"}], "/", "18"}]}],
+                     ")"}], "^", "0.5"}]}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"uS", "=", 
+                  RowBox[{"S", "/", "sigmaS"}]}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"pvalue", "=", 
+                  RowBox[{"CDF", "[", 
+                   RowBox[{
+                    RowBox[{"NormalDistribution", "[", "]"}], ",", "uS"}], 
+                   "]"}]}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"Sow", "[", "pvalue", "]"}], ";"}]}], 
+               "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+            RowBox[{"[", 
+             RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Sow", "[", "MKTestMean", "]"}], ";"}]}], 
+        "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+     RowBox[{"[", 
+      RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";"}]}]], "Input",
+ CellChangeTimes->{{3.6082078495516906`*^9, 3.608207870759904*^9}, {
+   3.6082079861305027`*^9, 3.6082080197324247`*^9}, 3.608214778546006*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"f2", "[", "a_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"#", ",", 
+      RowBox[{"First", "@", 
+       RowBox[{
+        RowBox[{"SparseArray", "[", 
+         RowBox[{"UnitStep", "[", 
+          RowBox[{"a", "-", "#"}], "]"}], "]"}], "[", 
+        "\"\<AdjacencyLists\>\"", "]"}]}]}], "}"}], "&"}], "@", 
+   RowBox[{"Max", "@", "a"}]}]}]], "Input",
+ CellChangeTimes->{{3.6081679654692993`*^9, 3.6081679654722996`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Best", " ", "for", " ", "each", " ", "windows"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"MKTestMeanBest", "=", 
+    RowBox[{"f2", "/@", 
+     RowBox[{"Transpose", "[", "MKTestMean", "]"}]}]}], "*)"}]}]], "Input",
+ CellChangeTimes->{{3.6081679723096905`*^9, 3.608167979516103*^9}, {
+  3.6081680201064243`*^9, 3.6081680217115164`*^9}, {3.6081680776717167`*^9, 
+  3.608168082489992*^9}, {3.6081681220472555`*^9, 3.608168132741867*^9}, {
+  3.6081681789165077`*^9, 3.608168184341818*^9}, {3.6101156661465693`*^9, 
+  3.6101156740770235`*^9}, {3.610115939331195*^9, 3.6101159411062965`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"MKTestMeanFail", "=", 
+   RowBox[{
+    RowBox[{"Reap", "[", 
+     RowBox[{
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"i", "=", "1"}], ",", 
+        RowBox[{"i", "\[LessEqual]", 
+         RowBox[{"Length", "[", 
+          RowBox[{"MKTestMeanBest", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "1"}], "]"}], "]"}], "]"}]}], ",", 
+        RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"MKTestMeanBest", "[", 
+              RowBox[{"[", 
+               RowBox[{"All", ",", "1"}], "]"}], "]"}], "[", 
+             RowBox[{"[", "i", "]"}], "]"}], "<", "0.05"}], ",", 
+           RowBox[{"Sow", "[", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", 
+              RowBox[{
+               RowBox[{"MKTestMeanBest", "[", 
+                RowBox[{"[", 
+                 RowBox[{"All", ",", "1"}], "]"}], "]"}], "[", 
+               RowBox[{"[", "i", "]"}], "]"}]}], "}"}], "]"}]}], "]"}], 
+         ";"}]}], "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+    RowBox[{"[", "2", "]"}], "]"}]}], "*)"}]], "Input",
+ CellChangeTimes->{{3.60779453830523*^9, 3.60779467205188*^9}, 
+   3.6077949410342646`*^9, {3.6081675280172787`*^9, 3.6081676259898825`*^9}, {
+   3.60816822161695*^9, 3.6081682618322506`*^9}, {3.6101159511178694`*^9, 
+   3.6101159533159947`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Mann", "-", 
+    RowBox[{
+    "Kendall", " ", "test", " ", "for", " ", "standard", " ", "deviation"}], 
+    " ", "-", " ", "Trend"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"MKTestStd", "=", 
+    RowBox[{
+     RowBox[{"Reap", "[", 
+      RowBox[{
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"a", "=", "1"}], ",", 
+         RowBox[{"a", "\[LessEqual]", 
+          RowBox[{"Length", "[", "DataSeg", "]"}]}], ",", 
+         RowBox[{"a", "++"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"MKTestStd", "=", 
+           RowBox[{
+            RowBox[{"Reap", "[", 
+             RowBox[{
+              RowBox[{"For", "[", 
+               RowBox[{
+                RowBox[{"i", "=", "1"}], ",", 
+                RowBox[{"i", "\[LessEqual]", "Nwin"}], ",", 
+                RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{"big", "=", "0"}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"n", "=", 
+                  RowBox[{"Length", "[", 
+                   RowBox[{"DataSeg", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i", ",", "All", ",", "2"}], "]"}], 
+                    "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"For", "[", 
+                  RowBox[{
+                   RowBox[{"j", "=", "1"}], ",", 
+                   RowBox[{"j", "\[LessEqual]", 
+                    RowBox[{"(", 
+                    RowBox[{"n", "-", "1"}], ")"}]}], ",", 
+                   RowBox[{"j", "++"}], ",", "\[IndentingNewLine]", 
+                   RowBox[{
+                    RowBox[{"For", "[", 
+                    RowBox[{
+                    RowBox[{"k", "=", 
+                    RowBox[{"j", "+", "1"}]}], ",", 
+                    RowBox[{"k", "\[LessEqual]", "n"}], ",", 
+                    RowBox[{"k", "++"}], ",", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"DataSeg", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i", ",", "All", ",", "2"}], "]"}], 
+                    "]"}], "[", 
+                    RowBox[{"[", "j", "]"}], "]"}], ">", 
+                    RowBox[{
+                    RowBox[{"DataSeg", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i", ",", "All", ",", "2"}], "]"}], 
+                    "]"}], "[", 
+                    RowBox[{"[", "k", "]"}], "]"}]}], ",", 
+                    RowBox[{"big", "=", 
+                    RowBox[{"big", "+", "1"}]}]}], "]"}], ";"}]}], 
+                    "\[IndentingNewLine]", "]"}], ";"}]}], 
+                  "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"S", "=", 
+                  RowBox[{
+                   RowBox[{"2", "*", "big"}], "-", 
+                   RowBox[{"Binomial", "[", 
+                    RowBox[{"n", ",", "2"}], "]"}]}]}], ";", 
+                 "\[IndentingNewLine]", 
+                 RowBox[{"sigmaS", "=", 
+                  RowBox[{
+                   RowBox[{"(", 
+                    RowBox[{"n", "*", 
+                    RowBox[{"(", 
+                    RowBox[{"n", "-", "1"}], ")"}], "*", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"2", "*", "n"}], "+", "5"}], ")"}], "/", "18"}]}],
+                     ")"}], "^", "0.5"}]}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"uS", "=", 
+                  RowBox[{"S", "/", "sigmaS"}]}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"pvalue", "=", 
+                  RowBox[{"CDF", "[", 
+                   RowBox[{
+                    RowBox[{"NormalDistribution", "[", "]"}], ",", "uS"}], 
+                   "]"}]}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"Sow", "[", "pvalue", "]"}], ";"}]}], 
+               "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+            RowBox[{"[", 
+             RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Sow", "[", "MKTestStd", "]"}], ";"}]}], 
+        "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+     RowBox[{"[", 
+      RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";"}]}]], "Input",
+ CellChangeTimes->{{3.607792874364058*^9, 3.60779308856931*^9}, {
+   3.6077932322785296`*^9, 3.607793239369935*^9}, 3.607793376421774*^9, 
+   3.607794681610427*^9, 3.6081658309642124`*^9, {3.6081682899728603`*^9, 
+   3.6081683487172203`*^9}, 3.6082147839323144`*^9}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"MKTestStdBest", "=", 
+   RowBox[{"f2", "/@", 
+    RowBox[{"Transpose", "[", "MKTestStd", "]"}]}]}], "*)"}]], "Input",
+ CellChangeTimes->{{3.6081683658632007`*^9, 3.608168370629473*^9}, {
+  3.6101159592213326`*^9, 3.6101159619424887`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"MKTestStdFail", "=", 
+   RowBox[{
+    RowBox[{"Reap", "[", 
+     RowBox[{
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"i", "=", "1"}], ",", 
+        RowBox[{"i", "\[LessEqual]", 
+         RowBox[{"Length", "[", 
+          RowBox[{"MKTestStdBest", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "1"}], "]"}], "]"}], "]"}]}], ",", 
+        RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"MKTestStdBest", "[", 
+              RowBox[{"[", 
+               RowBox[{"All", ",", "1"}], "]"}], "]"}], "[", 
+             RowBox[{"[", "i", "]"}], "]"}], "<", "0.05"}], ",", 
+           RowBox[{"Sow", "[", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", 
+              RowBox[{
+               RowBox[{"MKTestStdBest", "[", 
+                RowBox[{"[", 
+                 RowBox[{"All", ",", "1"}], "]"}], "]"}], "[", 
+               RowBox[{"[", "i", "]"}], "]"}]}], "}"}], "]"}]}], "]"}], 
+         ";"}]}], "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+    RowBox[{"[", "2", "]"}], "]"}]}], "*)"}]], "Input",
+ CellChangeTimes->{{3.607793053727317*^9, 3.6077930550513926`*^9}, {
+  3.607793093383585*^9, 3.60779309381561*^9}, {3.607794683638543*^9, 
+  3.6077946988524127`*^9}, {3.607794919993061*^9, 3.607794920162071*^9}, {
+  3.6081683980180397`*^9, 3.608168419949294*^9}, {3.6101159639476027`*^9, 
+  3.610115965952718*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Shapiro", " ", "Wilk", " ", "test", " ", "for", " ", "normality"}], " ", 
+   "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"SWTest", "=", 
+    RowBox[{
+     RowBox[{"Reap", "[", 
+      RowBox[{
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"a", "=", "1"}], ",", 
+         RowBox[{"a", "\[LessEqual]", 
+          RowBox[{"Length", "[", "DataSeg", "]"}]}], ",", 
+         RowBox[{"a", "++"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"SWTest", "=", 
+           RowBox[{
+            RowBox[{"Reap", "[", 
+             RowBox[{
+              RowBox[{"For", "[", 
+               RowBox[{
+                RowBox[{"i", "=", "1"}], ",", 
+                RowBox[{"i", "\[LessEqual]", "Nwin"}], ",", 
+                RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{"pvalue", "=", 
+                  RowBox[{"DistributionFitTest", "[", 
+                   RowBox[{
+                    RowBox[{"DataSeg", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i", ",", "All", ",", "1"}], "]"}], 
+                    "]"}], ",", "Automatic", ",", "\"\<ShapiroWilk\>\""}], 
+                   "]"}]}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"Sow", "[", "pvalue", "]"}], ";"}]}], 
+               "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+            RowBox[{"[", 
+             RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Sow", "[", "SWTest", "]"}], ";"}]}], "\[IndentingNewLine]",
+         "]"}], ";"}], "]"}], "[", 
+     RowBox[{"[", 
+      RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";"}]}]], "Input",
+ CellChangeTimes->{{3.6078558242405853`*^9, 3.6078559052172165`*^9}, 
+   3.6081658331983404`*^9, {3.608168446660822*^9, 3.6081684845069866`*^9}, {
+   3.608168534127825*^9, 3.608168561108368*^9}, 3.6082147866414695`*^9}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"SWTestBest", "=", 
+   RowBox[{"f2", "/@", 
+    RowBox[{"Transpose", "[", "SWTest", "]"}]}]}], "*)"}]], "Input",
+ CellChangeTimes->{{3.6081684927214565`*^9, 3.60816850099693*^9}, {
+  3.608168601111656*^9, 3.608168602473734*^9}, {3.610115968875885*^9, 
+  3.6101159711400146`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"SWTestFail", "=", 
+   RowBox[{
+    RowBox[{"Reap", "[", 
+     RowBox[{
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"i", "=", "1"}], ",", 
+        RowBox[{"i", "\[LessEqual]", 
+         RowBox[{"Length", "[", 
+          RowBox[{"SWTestBest", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "1"}], "]"}], "]"}], "]"}]}], ",", 
+        RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"SWTestBest", "[", 
+              RowBox[{"[", 
+               RowBox[{"All", ",", "1"}], "]"}], "]"}], "[", 
+             RowBox[{"[", "i", "]"}], "]"}], "<", "0.05"}], ",", 
+           RowBox[{"Sow", "[", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", 
+              RowBox[{
+               RowBox[{"SWTestBest", "[", 
+                RowBox[{"[", 
+                 RowBox[{"All", ",", "1"}], "]"}], "]"}], "[", 
+               RowBox[{"[", "i", "]"}], "]"}]}], "}"}], "]"}]}], "]"}], 
+         ";"}]}], "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+    RowBox[{"[", "2", "]"}], "]"}]}], "*)"}]], "Input",
+ CellChangeTimes->{{3.6077944047485914`*^9, 3.607794405988662*^9}, {
+  3.607794710430075*^9, 3.607794729503166*^9}, {3.6077948135009704`*^9, 
+  3.6077948250746326`*^9}, {3.607794875091493*^9, 3.607794910076494*^9}, {
+  3.607855921151128*^9, 3.6078559391181555`*^9}, {3.6081685896510005`*^9, 
+  3.6081686143924155`*^9}, {3.6081686523585873`*^9, 3.6081686542186937`*^9}, {
+  3.610115977920402*^9, 3.6101159802825375`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"von", " ", "Neumann", " ", "test"}], " ", "-", " ", 
+    RowBox[{"Serial", " ", "Correlation"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"VNTest", "=", 
+    RowBox[{
+     RowBox[{"Reap", "[", 
+      RowBox[{
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"a", "=", "1"}], ",", 
+         RowBox[{"a", "\[LessEqual]", 
+          RowBox[{"Length", "[", "DataSeg", "]"}]}], ",", 
+         RowBox[{"a", "++"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"VNTest", "=", 
+           RowBox[{
+            RowBox[{"Reap", "[", 
+             RowBox[{
+              RowBox[{"For", "[", 
+               RowBox[{
+                RowBox[{"i", "=", "1"}], ",", 
+                RowBox[{"i", "\[LessEqual]", "Nwin"}], ",", 
+                RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{"sum", "=", "0"}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"n", "=", 
+                  RowBox[{"Length", "[", 
+                   RowBox[{"DataSeg", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i", ",", "All", ",", "1"}], "]"}], 
+                    "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"For", "[", 
+                  RowBox[{
+                   RowBox[{"j", "=", "1"}], ",", 
+                   RowBox[{"j", "\[LessEqual]", 
+                    RowBox[{"(", 
+                    RowBox[{"n", "-", "1"}], ")"}]}], ",", 
+                   RowBox[{"j", "++"}], ",", "\[IndentingNewLine]", 
+                   RowBox[{"sum", "=", 
+                    RowBox[{"sum", "+", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"DataSeg", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i", ",", "All", ",", "1"}], "]"}], 
+                    "]"}], "[", 
+                    RowBox[{"[", 
+                    RowBox[{"j", "+", "1"}], "]"}], "]"}], "-", 
+                    RowBox[{
+                    RowBox[{"DataSeg", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i", ",", "All", ",", "1"}], "]"}], 
+                    "]"}], "[", 
+                    RowBox[{"[", "j", "]"}], "]"}]}], ")"}], "^", "2"}]}]}]}],
+                   "]"}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"qsquared", "=", 
+                  RowBox[{"sum", "/", 
+                   RowBox[{"(", 
+                    RowBox[{"2", "*", 
+                    RowBox[{"(", 
+                    RowBox[{"n", "-", "1"}], ")"}]}], ")"}]}]}], ";", 
+                 "\[IndentingNewLine]", 
+                 RowBox[{"r", "=", 
+                  RowBox[{"qsquared", "/", 
+                   RowBox[{"Variance", "[", 
+                    RowBox[{"DataSeg", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i", ",", "All", ",", "1"}], "]"}], 
+                    "]"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"sigmar", "=", 
+                  RowBox[{
+                   RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"1", "+", 
+                    RowBox[{"1", "/", 
+                    RowBox[{"(", 
+                    RowBox[{"n", "-", "1"}], ")"}]}]}], ")"}], "/", 
+                    RowBox[{"(", 
+                    RowBox[{"n", "+", "1"}], ")"}]}], ")"}], "^", "0.5"}]}], 
+                 ";", "\[IndentingNewLine]", 
+                 RowBox[{"ur", "=", 
+                  RowBox[{
+                   RowBox[{"(", 
+                    RowBox[{"r", "-", "1"}], ")"}], "/", "sigmar"}]}], ";", 
+                 "\[IndentingNewLine]", 
+                 RowBox[{"pvalue", "=", 
+                  RowBox[{"CDF", "[", 
+                   RowBox[{
+                    RowBox[{"NormalDistribution", "[", "]"}], ",", "ur"}], 
+                   "]"}]}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"Sow", "[", "pvalue", "]"}], ";"}]}], 
+               "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+            RowBox[{"[", 
+             RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Sow", "[", "VNTest", "]"}], ";"}]}], "\[IndentingNewLine]",
+         "]"}], ";"}], "]"}], "[", 
+     RowBox[{"[", 
+      RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";"}]}]], "Input",
+ CellChangeTimes->{{3.607792009340582*^9, 3.607792185471656*^9}, 
+   3.6077922175904927`*^9, {3.607792254679614*^9, 3.607792263085095*^9}, {
+   3.6077927091736097`*^9, 3.607792775195386*^9}, {3.607792894524211*^9, 
+   3.6077928990914726`*^9}, 3.6077938157279015`*^9, 3.607794756575714*^9, {
+   3.607794927276478*^9, 3.6077949329068003`*^9}, 3.6081658357034836`*^9, {
+   3.6081686705696287`*^9, 3.6081686936289473`*^9}, {3.608168802544177*^9, 
+   3.6081688211892433`*^9}, 3.60821478787654*^9}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"VNTestBest", "=", 
+   RowBox[{"f2", "/@", 
+    RowBox[{"Transpose", "[", "VNTest", "]"}]}]}], "*)"}]], "Input",
+ CellChangeTimes->{{3.6081688389552603`*^9, 3.6081688428154807`*^9}, {
+  3.6101159836587305`*^9, 3.6101159853958297`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"VNTestFail", "=", 
+   RowBox[{
+    RowBox[{"Reap", "[", 
+     RowBox[{
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"i", "=", "1"}], ",", 
+        RowBox[{"i", "\[LessEqual]", 
+         RowBox[{"Length", "[", 
+          RowBox[{"VNTestBest", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "1"}], "]"}], "]"}], "]"}]}], ",", 
+        RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"VNTestBest", "[", 
+              RowBox[{"[", 
+               RowBox[{"All", ",", "1"}], "]"}], "]"}], "[", 
+             RowBox[{"[", "i", "]"}], "]"}], "<", "0.05"}], ",", 
+           RowBox[{"Sow", "[", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", 
+              RowBox[{
+               RowBox[{"VNTestBest", "[", 
+                RowBox[{"[", 
+                 RowBox[{"All", ",", "1"}], "]"}], "]"}], "[", 
+               RowBox[{"[", "i", "]"}], "]"}]}], "}"}], "]"}]}], "]"}], 
+         ";"}]}], "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+    RowBox[{"[", "2", "]"}], "]"}]}], "*)"}]], "Input",
+ CellChangeTimes->{{3.607792778375568*^9, 3.6077927796906433`*^9}, {
+   3.607794760829958*^9, 3.60779477083453*^9}, 3.607794930440659*^9, {
+   3.608168865919802*^9, 3.608168874767308*^9}, {3.6101159874209456`*^9, 
+   3.6101159926322436`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"MKMeanFailCount", "=", 
+   RowBox[{
+    RowBox[{"Reap", "[", 
+     RowBox[{
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"a", "=", "1"}], ",", 
+        RowBox[{"a", "\[LessEqual]", 
+         RowBox[{"Length", "[", "MKTestMean", "]"}]}], ",", 
+        RowBox[{"a", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"MKMeanFailCount", "=", 
+          RowBox[{"Total", "[", 
+           RowBox[{"Boole", "[", 
+            RowBox[{"Negative", "[", 
+             RowBox[{
+              RowBox[{"MKTestMean", "[", 
+               RowBox[{"[", "a", "]"}], "]"}], "-", "0.05"}], "]"}], "]"}], 
+           "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"Sow", "[", "MKMeanFailCount", "]"}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.608169010785088*^9, 3.608169016812433*^9}, {
+   3.6081690479342127`*^9, 3.6081692464625683`*^9}, {3.60816955001193*^9, 
+   3.608169591005275*^9}, 3.608203067055604*^9, {3.608206709558487*^9, 
+   3.6082067395932045`*^9}, 3.6101160107902822`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"MKStdFailCount", "=", 
+   RowBox[{
+    RowBox[{"Reap", "[", 
+     RowBox[{
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"a", "=", "1"}], ",", 
+        RowBox[{"a", "\[LessEqual]", 
+         RowBox[{"Length", "[", "MKTestStd", "]"}]}], ",", 
+        RowBox[{"a", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"MKStdFailCount", "=", 
+          RowBox[{"Total", "[", 
+           RowBox[{"Boole", "[", 
+            RowBox[{"Negative", "[", 
+             RowBox[{
+              RowBox[{"MKTestStd", "[", 
+               RowBox[{"[", "a", "]"}], "]"}], "-", "0.05"}], "]"}], "]"}], 
+           "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"Sow", "[", "MKStdFailCount", "]"}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.608206769898938*^9, 3.608206786728901*^9}, 
+   3.6101160051399593`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SWFailCount", "=", 
+   RowBox[{
+    RowBox[{"Reap", "[", 
+     RowBox[{
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"a", "=", "1"}], ",", 
+        RowBox[{"a", "\[LessEqual]", 
+         RowBox[{"Length", "[", "SWTest", "]"}]}], ",", 
+        RowBox[{"a", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"SWFailCount", "=", 
+          RowBox[{"Total", "[", 
+           RowBox[{"Boole", "[", 
+            RowBox[{"Negative", "[", 
+             RowBox[{
+              RowBox[{"SWTest", "[", 
+               RowBox[{"[", "a", "]"}], "]"}], "-", "0.05"}], "]"}], "]"}], 
+           "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"Sow", "[", "SWFailCount", "]"}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.608169010785088*^9, 3.608169016812433*^9}, {
+   3.6081690479342127`*^9, 3.6081692464625683`*^9}, {3.60816955001193*^9, 
+   3.608169591005275*^9}, 3.608203067055604*^9, {3.608206672150347*^9, 
+   3.608206684181035*^9}, 3.6101160061800184`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"VNFailCount", "=", 
+   RowBox[{
+    RowBox[{"Reap", "[", 
+     RowBox[{
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"a", "=", "1"}], ",", 
+        RowBox[{"a", "\[LessEqual]", 
+         RowBox[{"Length", "[", "VNTest", "]"}]}], ",", 
+        RowBox[{"a", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"VNFailCount", "=", 
+          RowBox[{"Total", "[", 
+           RowBox[{"Boole", "[", 
+            RowBox[{"Negative", "[", 
+             RowBox[{
+              RowBox[{"VNTest", "[", 
+               RowBox[{"[", "a", "]"}], "]"}], "-", "0.05"}], "]"}], "]"}], 
+           "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"Sow", "[", "VNFailCount", "]"}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.608169010785088*^9, 3.608169016812433*^9}, {
+   3.6081690479342127`*^9, 3.6081692464625683`*^9}, {3.60816955001193*^9, 
+   3.608169591005275*^9}, 3.608203067055604*^9, 3.610116007165075*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"AllFailCount", "=", 
+  RowBox[{"{", 
+   RowBox[{
+   "MKMeanFailCount", "+", "MKStdFailCount", "+", "SWFailCount", "+", 
+    "VNFailCount"}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.6082071401441145`*^9, 3.608207167911703*^9}, {
+  3.6082122936668797`*^9, 3.6082122962580276`*^9}, {3.608212327888837*^9, 
+  3.6082123441437664`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+   "112", ",", "110", ",", "115", ",", "106", ",", "105", ",", "115", ",", 
+    "102", ",", "107", ",", "103", ",", "95", ",", "102", ",", "115", ",", 
+    "101", ",", "99", ",", "101", ",", "97", ",", "101", ",", "96", ",", 
+    "104", ",", "101", ",", "98", ",", "102", ",", "93", ",", "90", ",", "91",
+     ",", "92", ",", "95", ",", "93", ",", "89", ",", "86", ",", "88", ",", 
+    "92", ",", "94", ",", "99", ",", "83", ",", "94", ",", "91", ",", "84", 
+    ",", "88", ",", "81", ",", "80", ",", "80", ",", "78", ",", "78", ",", 
+    "77", ",", "85", ",", "79", ",", "97", ",", "79", ",", "87", ",", "80", 
+    ",", "80", ",", "74", ",", "89", ",", "73", ",", "73", ",", "80", ",", 
+    "67", ",", "76", ",", "74", ",", "65", ",", "79", ",", "71", ",", "74", 
+    ",", "67", ",", "80", ",", "79", ",", "73", ",", "68", ",", "79", ",", 
+    "70", ",", "58", ",", "78", ",", "67", ",", "62", ",", "70", ",", "68", 
+    ",", "65", ",", "72", ",", "67", ",", "68", ",", "67", ",", "62", ",", 
+    "63", ",", "65", ",", "78", ",", "63", ",", "65", ",", "66", ",", "68", 
+    ",", "58", ",", "60", ",", "65", ",", "60", ",", "59", ",", "65", ",", 
+    "88", ",", "61", ",", "61", ",", "63", ",", "59", ",", "58", ",", "61", 
+    ",", "69", ",", "84", ",", "57", ",", "59", ",", "59", ",", "71", ",", 
+    "59", ",", "54", ",", "61", ",", "65", ",", "57", ",", "59", ",", "56", 
+    ",", "59", ",", "69", ",", "55", ",", "56", ",", "53", ",", "59", ",", 
+    "76", ",", "50", ",", "50", ",", "52", ",", "54", ",", "69", ",", "53", 
+    ",", "52", ",", "53", ",", "60", ",", "56", ",", "49", ",", "50", ",", 
+    "56", ",", "51", ",", "63", ",", "83", ",", "53", ",", "52", ",", "55", 
+    ",", "58", ",", "62", ",", "55", ",", "53", ",", "50", ",", "54", ",", 
+    "60", ",", "58", ",", "50", ",", "43", ",", "48", ",", "48", ",", "51", 
+    ",", "53", ",", "63", ",", "51", ",", "48", ",", "44", ",", "42", ",", 
+    "49", ",", "55", ",", "75", ",", "42", ",", "42", ",", "46", ",", "45", 
+    ",", "51", ",", "51", ",", "73", ",", "49", ",", "44", ",", "47", ",", 
+    "46", ",", "42", ",", "51", ",", "55", ",", "45", ",", "45", ",", "46", 
+    ",", "54", ",", "52", ",", "41", ",", "47", ",", "54", ",", "45", ",", 
+    "39", ",", "40", ",", "41", ",", "49", ",", "46", ",", "49", ",", "58", 
+    ",", "86", ",", "44", ",", "44", ",", "43", ",", "44", ",", "48", ",", 
+    "51", ",", "51", ",", "52", ",", "48", ",", "45", ",", "51", ",", "44", 
+    ",", "42", ",", "42", ",", "41", ",", "38", ",", "45", ",", "59", ",", 
+    "38", ",", "35", ",", "39", ",", "40", ",", "38", ",", "44", ",", "47", 
+    ",", "46", ",", "52", ",", "61", ",", "45", ",", "41", ",", "37", ",", 
+    "40", ",", "41", ",", "45", ",", "42", ",", "38", ",", "49", ",", "52", 
+    ",", "66", ",", "41", ",", "40", ",", "42", ",", "45", ",", "43", ",", 
+    "44", ",", "49", ",", "46", ",", "50", ",", "58", ",", "61", ",", "41", 
+    ",", "40", ",", "38", ",", "40", ",", "35", ",", "38", ",", "38", ",", 
+    "42", ",", "44", ",", "45", ",", "47", ",", "55", ",", "84", ",", "40", 
+    ",", "37", ",", "40", ",", "43", ",", "41", ",", "34", ",", "37", ",", 
+    "34", ",", "33", ",", "35", ",", "48", ",", "48", ",", "61", ",", "39", 
+    ",", "40", ",", "39", ",", "36", ",", "31", ",", "32", ",", "35", ",", 
+    "37", ",", "39", ",", "35", ",", "36", ",", "41", ",", "47", ",", "58", 
+    ",", "31", ",", "35", ",", "34", ",", "35", ",", "34", ",", "32", ",", 
+    "34", ",", "32", ",", "29", ",", "32", ",", "34", ",", "34", ",", "40", 
+    ",", "47", ",", "54", ",", "31"}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{{3.6082071529398465`*^9, 3.608207168414732*^9}, 
+   3.608208487635187*^9, 3.608211778173395*^9, 3.608212039611348*^9, 
+   3.6082121248932257`*^9, {3.608212289633649*^9, 3.6082122967150536`*^9}, {
+   3.608212331125022*^9, 3.6082123448228054`*^9}, 3.608212488553026*^9, 
+   3.608212525367132*^9, 3.608212682792136*^9, 3.608212931841381*^9, 
+   3.6082134282967763`*^9, 3.6082135779533367`*^9, 3.6082140438929863`*^9, 
+   3.6082142107915325`*^9, 3.6082148777256794`*^9, 3.6083899944415183`*^9, 
+   3.6083943255927224`*^9, 3.6101144269486914`*^9, 3.6101144760334992`*^9, 
+   3.6101162833288703`*^9, 3.6101186051606717`*^9, 3.6104548830160227`*^9, 
+   3.6106259715436945`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"f1", "[", "a_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"#", ",", 
+      RowBox[{"First", "@", 
+       RowBox[{
+        RowBox[{"SparseArray", "[", 
+         RowBox[{"UnitStep", "[", 
+          RowBox[{"#", "-", "a"}], "]"}], "]"}], "[", 
+        "\"\<AdjacencyLists\>\"", "]"}]}]}], "}"}], "&"}], "@", 
+   RowBox[{"Min", "@", "a"}]}]}]], "Input",
+ CellChangeTimes->{{3.6081679654692993`*^9, 3.6081679654722996`*^9}, {
+  3.6082104838733654`*^9, 3.6082104872775598`*^9}, {3.608210564489976*^9, 
+  3.608210564922001*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"BestAllFailCount", "=", 
+  RowBox[{"f1", "/@", "AllFailCount"}]}]], "Input",
+ CellChangeTimes->{{3.608212305426552*^9, 3.608212348727029*^9}, {
+  3.610114450768054*^9, 3.6101144542192516`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{"29", ",", "294"}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{{3.6082123345882196`*^9, 3.608212349081049*^9}, 
+   3.6082124885730276`*^9, 3.608212525388133*^9, 3.6082126828141375`*^9, 
+   3.6082129318713827`*^9, 3.6082134283167777`*^9, 3.6082135779763374`*^9, 
+   3.608214043916988*^9, 3.608214210825535*^9, 3.6082148777466803`*^9, 
+   3.6083899944645195`*^9, 3.6083943256227245`*^9, {3.6101144269636927`*^9, 
+   3.6101144779366083`*^9}, 3.610116283345872*^9, 3.6101186051796727`*^9, 
+   3.610454883040024*^9, 3.6106259715576954`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MKMeanFailCount", "[", 
+  RowBox[{"[", 
+   RowBox[{"BestAllFailCount", "[", 
+    RowBox[{"[", 
+     RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6089186424754295`*^9, 3.6089186496148376`*^9}, {
+  3.6089187103223095`*^9, 3.6089187151615863`*^9}}],
+
+Cell[BoxData["4"], "Output",
+ CellChangeTimes->{3.6089186499988594`*^9, 3.6089187155106063`*^9, 
+  3.609612455987958*^9, 3.6101129181153913`*^9, 3.6101144271027*^9, 
+  3.6101144797037086`*^9, 3.6101162833598723`*^9, 3.6101186051926737`*^9, 
+  3.6104548830540247`*^9, 3.6106259715626955`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MKMeanFailUse", "=", 
+  RowBox[{
+   RowBox[{"Reap", "[", 
+    RowBox[{
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{"i", "=", "1"}], ",", 
+       RowBox[{"i", "\[LessEqual]", 
+        RowBox[{"Length", "[", 
+         RowBox[{"MKTestMean", "[", 
+          RowBox[{"[", 
+           RowBox[{"BestAllFailCount", "[", 
+            RowBox[{"[", 
+             RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "]"}]}], 
+       ",", 
+       RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"MKTestMean", "[", 
+             RowBox[{"[", 
+              RowBox[{"BestAllFailCount", "[", 
+               RowBox[{"[", 
+                RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "<", "0.05"}], ",", 
+          RowBox[{"Sow", "[", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", 
+             RowBox[{
+              RowBox[{"MKTestMean", "[", 
+               RowBox[{"[", 
+                RowBox[{"BestAllFailCount", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "[", 
+              RowBox[{"[", "i", "]"}], "]"}]}], "}"}], "]"}]}], "]"}], 
+        ";"}]}], "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+   RowBox[{"[", "2", "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.610115884893081*^9, 3.610115904484202*^9}, {
+  3.610116616011899*^9, 3.6101166304457245`*^9}, {3.610116822779725*^9, 
+  3.6101168268589582`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"49", ",", "0.014550577653404293`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"56", ",", "0.013000506939946812`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"78", ",", "0.009175816504177326`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"101", ",", "0.006374671415847453`"}], "}"}]}], "}"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{
+  3.6101162851519747`*^9, 3.610116631320774*^9, {3.610116823952792*^9, 
+   3.610116827423991*^9}, 3.6101186052076745`*^9, 3.610454883074026*^9, 
+   3.610625971572696*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MKMeanFailCountLessThan1", "=", 
+  RowBox[{
+   RowBox[{"Length", "[", 
+    RowBox[{"Flatten", "[", 
+     RowBox[{
+      RowBox[{"Reap", "[", 
+       RowBox[{
+        RowBox[{"For", "[", 
+         RowBox[{
+          RowBox[{"i", "=", "1"}], ",", 
+          RowBox[{"i", "\[LessEqual]", 
+           RowBox[{"Length", "[", 
+            RowBox[{"MKTestMean", "[", 
+             RowBox[{"[", 
+              RowBox[{"BestAllFailCount", "[", 
+               RowBox[{"[", 
+                RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "]"}]}], 
+          ",", 
+          RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"MKTestMean", "[", 
+                RowBox[{"[", 
+                 RowBox[{"BestAllFailCount", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "[", 
+               RowBox[{"[", "i", "]"}], "]"}], "<", "0.01"}], ",", 
+             RowBox[{"Sow", "[", 
+              RowBox[{"{", 
+               RowBox[{"i", ",", 
+                RowBox[{
+                 RowBox[{"MKTestMean", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"BestAllFailCount", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "[", 
+                 RowBox[{"[", "i", "]"}], "]"}]}], "}"}], "]"}]}], "]"}], 
+           ";"}]}], "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+      RowBox[{"[", "2", "]"}], "]"}], "]"}], "]"}], "/", "2"}]}]], "Input",
+ CellChangeTimes->{{3.6101168559446225`*^9, 3.610116892480712*^9}, {
+  3.6101169800987234`*^9, 3.610117030703618*^9}}],
+
+Cell[BoxData["2"], "Output",
+ CellChangeTimes->{{3.610116880356018*^9, 3.6101168944948273`*^9}, {
+   3.610116985376025*^9, 3.6101170000378637`*^9}, 3.6101170310316367`*^9, 
+   3.6101186052226753`*^9, 3.6104548830960274`*^9, 3.610625971583697*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MKStdFailCount", "[", 
+  RowBox[{"[", 
+   RowBox[{"BestAllFailCount", "[", 
+    RowBox[{"[", 
+     RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.608918723726076*^9, 3.6089187243681135`*^9}}],
+
+Cell[BoxData["3"], "Output",
+ CellChangeTimes->{3.6089187250031495`*^9, 3.609612456003959*^9, 
+  3.610112918128392*^9, 3.6101144271787047`*^9, 3.610114481585817*^9, 
+  3.610116283374873*^9, 3.610118605235676*^9, 3.610454883112028*^9, 
+  3.6106259715906973`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MKStdFailUse", "=", 
+  RowBox[{
+   RowBox[{"Reap", "[", 
+    RowBox[{
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{"i", "=", "1"}], ",", 
+       RowBox[{"i", "\[LessEqual]", 
+        RowBox[{"Length", "[", 
+         RowBox[{"MKTestStd", "[", 
+          RowBox[{"[", 
+           RowBox[{"BestAllFailCount", "[", 
+            RowBox[{"[", 
+             RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "]"}]}], 
+       ",", 
+       RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"MKTestStd", "[", 
+             RowBox[{"[", 
+              RowBox[{"BestAllFailCount", "[", 
+               RowBox[{"[", 
+                RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "<", "0.05"}], ",", 
+          RowBox[{"Sow", "[", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", 
+             RowBox[{
+              RowBox[{"MKTestStd", "[", 
+               RowBox[{"[", 
+                RowBox[{"BestAllFailCount", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "[", 
+              RowBox[{"[", "i", "]"}], "]"}]}], "}"}], "]"}]}], "]"}], 
+        ";"}]}], "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+   RowBox[{"[", "2", "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6101166598024035`*^9, 3.610116676563362*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"40", ",", "0.04482948352653899`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"41", ",", "0.04081703527216146`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"42", ",", "0.02489882643506133`"}], "}"}]}], "}"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.610116677154396*^9, 3.610118605250677*^9, 
+  3.6104548831290293`*^9, 3.6106259716006975`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MKStdFailCountLessThan1", "=", 
+  RowBox[{
+   RowBox[{"Length", "[", 
+    RowBox[{"Flatten", "[", 
+     RowBox[{
+      RowBox[{"Reap", "[", 
+       RowBox[{
+        RowBox[{"For", "[", 
+         RowBox[{
+          RowBox[{"i", "=", "1"}], ",", 
+          RowBox[{"i", "\[LessEqual]", 
+           RowBox[{"Length", "[", 
+            RowBox[{"MKTestStd", "[", 
+             RowBox[{"[", 
+              RowBox[{"BestAllFailCount", "[", 
+               RowBox[{"[", 
+                RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "]"}]}], 
+          ",", 
+          RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"MKTestStd", "[", 
+                RowBox[{"[", 
+                 RowBox[{"BestAllFailCount", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "[", 
+               RowBox[{"[", "i", "]"}], "]"}], "<", "0.01"}], ",", 
+             RowBox[{"Sow", "[", 
+              RowBox[{"{", 
+               RowBox[{"i", ",", 
+                RowBox[{
+                 RowBox[{"MKTestStd", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"BestAllFailCount", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "[", 
+                 RowBox[{"[", "i", "]"}], "]"}]}], "}"}], "]"}]}], "]"}], 
+           ";"}]}], "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+      RowBox[{"[", "2", "]"}], "]"}], "]"}], "]"}], "/", "2"}]}]], "Input",
+ CellChangeTimes->{{3.610116906394508*^9, 3.610116917435139*^9}, {
+  3.6101169499559994`*^9, 3.610116976486517*^9}, {3.6101170371799884`*^9, 
+  3.6101170373529983`*^9}}],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{
+  3.6101169180331736`*^9, {3.610116954266246*^9, 3.6101169768325367`*^9}, 
+   3.610117037615013*^9, 3.6101186052656775`*^9, 3.61045488314603*^9, 
+   3.6106259716106987`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SWFailCount", "[", 
+  RowBox[{"[", 
+   RowBox[{"BestAllFailCount", "[", 
+    RowBox[{"[", 
+     RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.608918726983263*^9, 3.6089187364768057`*^9}}],
+
+Cell[BoxData["6"], "Output",
+ CellChangeTimes->{3.6089187376638737`*^9, 3.6096124560219603`*^9, 
+  3.6101129181413927`*^9, 3.610114427256709*^9, 3.6101144826538777`*^9, 
+  3.610116283388874*^9, 3.6101186052786784`*^9, 3.610454883160031*^9, 
+  3.6106259716146984`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SWFailUse", "=", 
+  RowBox[{
+   RowBox[{"Reap", "[", 
+    RowBox[{
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{"i", "=", "1"}], ",", 
+       RowBox[{"i", "\[LessEqual]", 
+        RowBox[{"Length", "[", 
+         RowBox[{"SWTest", "[", 
+          RowBox[{"[", 
+           RowBox[{"BestAllFailCount", "[", 
+            RowBox[{"[", 
+             RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "]"}]}], 
+       ",", 
+       RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"SWTest", "[", 
+             RowBox[{"[", 
+              RowBox[{"BestAllFailCount", "[", 
+               RowBox[{"[", 
+                RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "<", "0.05"}], ",", 
+          RowBox[{"Sow", "[", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", 
+             RowBox[{
+              RowBox[{"SWTest", "[", 
+               RowBox[{"[", 
+                RowBox[{"BestAllFailCount", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "[", 
+              RowBox[{"[", "i", "]"}], "]"}]}], "}"}], "]"}]}], "]"}], 
+        ";"}]}], "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+   RowBox[{"[", "2", "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.610116689485101*^9, 3.6101167076751413`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"4", ",", "0.0026311284013591984`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"21", ",", "0.023409743796942183`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"26", ",", "0.0036859793656659357`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"28", ",", "0.022414889037575388`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"36", ",", "0.03338134670492458`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"50", ",", "0.007535001875537619`"}], "}"}]}], "}"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.610116708534191*^9, 3.610118605293679*^9, 
+  3.610454883178032*^9, 3.610625971624699*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SWFailCountLessThan1", "=", 
+  RowBox[{
+   RowBox[{"Length", "[", 
+    RowBox[{"Flatten", "[", 
+     RowBox[{
+      RowBox[{"Reap", "[", 
+       RowBox[{
+        RowBox[{"For", "[", 
+         RowBox[{
+          RowBox[{"i", "=", "1"}], ",", 
+          RowBox[{"i", "\[LessEqual]", 
+           RowBox[{"Length", "[", 
+            RowBox[{"SWTest", "[", 
+             RowBox[{"[", 
+              RowBox[{"BestAllFailCount", "[", 
+               RowBox[{"[", 
+                RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "]"}]}], 
+          ",", 
+          RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"SWTest", "[", 
+                RowBox[{"[", 
+                 RowBox[{"BestAllFailCount", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "[", 
+               RowBox[{"[", "i", "]"}], "]"}], "<", "0.01"}], ",", 
+             RowBox[{"Sow", "[", 
+              RowBox[{"{", 
+               RowBox[{"i", ",", 
+                RowBox[{
+                 RowBox[{"SWTest", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"BestAllFailCount", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "[", 
+                 RowBox[{"[", "i", "]"}], "]"}]}], "}"}], "]"}]}], "]"}], 
+           ";"}]}], "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+      RowBox[{"[", "2", "]"}], "]"}], "]"}], "]"}], "/", "2"}]}]], "Input",
+ CellChangeTimes->{{3.6101169331280365`*^9, 3.6101169409014816`*^9}, {
+  3.6101170433783426`*^9, 3.6101170568891153`*^9}}],
+
+Cell[BoxData["3"], "Output",
+ CellChangeTimes->{3.6101170571491303`*^9, 3.6101186053086805`*^9, 
+  3.6104548831940327`*^9, 3.6106259716326995`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"VNFailCount", "[", 
+  RowBox[{"[", 
+   RowBox[{"BestAllFailCount", "[", 
+    RowBox[{"[", 
+     RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6089187389119453`*^9, 3.608918746729392*^9}}],
+
+Cell[BoxData["16"], "Output",
+ CellChangeTimes->{3.608918747114414*^9, 3.609612456046962*^9, 
+  3.6101129181543937`*^9, 3.610114427339714*^9, 3.610114485965067*^9, 
+  3.6101162834018745`*^9, 3.610118605321681*^9, 3.6104548832090335`*^9, 
+  3.6106259716377*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"VNFailUse", "=", 
+  RowBox[{
+   RowBox[{"Reap", "[", 
+    RowBox[{
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{"i", "=", "1"}], ",", 
+       RowBox[{"i", "\[LessEqual]", 
+        RowBox[{"Length", "[", 
+         RowBox[{"VNTest", "[", 
+          RowBox[{"[", 
+           RowBox[{"BestAllFailCount", "[", 
+            RowBox[{"[", 
+             RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "]"}]}], 
+       ",", 
+       RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"VNTest", "[", 
+             RowBox[{"[", 
+              RowBox[{"BestAllFailCount", "[", 
+               RowBox[{"[", 
+                RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "<", "0.05"}], ",", 
+          RowBox[{"Sow", "[", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", 
+             RowBox[{
+              RowBox[{"VNTest", "[", 
+               RowBox[{"[", 
+                RowBox[{"BestAllFailCount", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "[", 
+              RowBox[{"[", "i", "]"}], "]"}]}], "}"}], "]"}]}], "]"}], 
+        ";"}]}], "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+   RowBox[{"[", "2", "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.610116715466587*^9, 3.610116729110368*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"3", ",", "0.03068655138477579`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"6", ",", "0.035387069959101826`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"20", ",", "0.027973830535113514`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"23", ",", "0.014343540955789052`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"26", ",", "0.04809907665084941`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"32", ",", "0.005461621780487648`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"39", ",", "0.04251938958753279`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"42", ",", "0.01102682481456055`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"44", ",", "0.036975019686877726`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"45", ",", "0.02957737927136323`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"46", ",", "0.006630511482958793`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"47", ",", "0.035410049133258535`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"48", ",", "0.0414736093401757`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"49", ",", "0.0035887183128199473`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"54", ",", "0.044989093719356735`"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"67", ",", "0.01592958676288057`"}], "}"}]}], "}"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.610116729813408*^9, 3.610118605335682*^9, 
+  3.610454883226035*^9, 3.6106259716487007`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"VNFailCountLessThan1", "=", 
+  RowBox[{
+   RowBox[{"Length", "[", 
+    RowBox[{"Flatten", "[", 
+     RowBox[{
+      RowBox[{"Reap", "[", 
+       RowBox[{
+        RowBox[{"For", "[", 
+         RowBox[{
+          RowBox[{"i", "=", "1"}], ",", 
+          RowBox[{"i", "\[LessEqual]", 
+           RowBox[{"Length", "[", 
+            RowBox[{"VNTest", "[", 
+             RowBox[{"[", 
+              RowBox[{"BestAllFailCount", "[", 
+               RowBox[{"[", 
+                RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "]"}]}], 
+          ",", 
+          RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"VNTest", "[", 
+                RowBox[{"[", 
+                 RowBox[{"BestAllFailCount", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "[", 
+               RowBox[{"[", "i", "]"}], "]"}], "<", "0.01"}], ",", 
+             RowBox[{"Sow", "[", 
+              RowBox[{"{", 
+               RowBox[{"i", ",", 
+                RowBox[{
+                 RowBox[{"VNTest", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"BestAllFailCount", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "[", 
+                 RowBox[{"[", "i", "]"}], "]"}]}], "}"}], "]"}]}], "]"}], 
+           ";"}]}], "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+      RowBox[{"[", "2", "]"}], "]"}], "]"}], "]"}], "/", "2"}]}]], "Input",
+ CellChangeTimes->{{3.6101170672157063`*^9, 3.610117083659647*^9}}],
+
+Cell[BoxData["3"], "Output",
+ CellChangeTimes->{{3.6101170782343364`*^9, 3.610117084082671*^9}, 
+   3.6101186053506823`*^9, 3.610454883242036*^9, 3.610625971658701*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"UseSegWidth", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"f1", "/@", "AllFailCount"}], ")"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"1", ",", "2"}], "]"}], "]"}], "+", "MinSegWidth", "-", 
+   "1"}]}]], "Input",
+ CellChangeTimes->{{3.6082123778616953`*^9, 3.608212401710059*^9}, {
+  3.6082142358619666`*^9, 3.608214236024976*^9}}],
+
+Cell[BoxData["393"], "Output",
+ CellChangeTimes->{{3.608212394464645*^9, 3.6082124021790857`*^9}, 
+   3.6082124885880284`*^9, 3.6082125254061337`*^9, 3.608212682830138*^9, 
+   3.608212931891384*^9, 3.608213428332779*^9, 3.608213577994339*^9, 
+   3.608214043934989*^9, {3.6082142108435354`*^9, 3.6082142367980204`*^9}, 
+   3.6082148777656813`*^9, 3.60838999448252*^9, 3.6083943256387253`*^9, 
+   3.610114427351715*^9, 3.6101162834148755`*^9, 3.610118605363683*^9, 
+   3.610454883257036*^9, 3.610625971663701*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"BestAllFailCountLessThan1", "=", 
+  RowBox[{
+  "MKMeanFailCountLessThan1", "+", "MKStdFailCountLessThan1", "+", 
+   "SWFailCountLessThan1", "+", "VNFailCountLessThan1"}]}]], "Input",
+ CellChangeTimes->{{3.6101191082434464`*^9, 3.6101191721461015`*^9}}],
+
+Cell[BoxData["8"], "Output",
+ CellChangeTimes->{3.610119172665131*^9, 3.610454883271037*^9, 
+  3.6106259716687016`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<report.txt\>\"", ",", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<UseSegWidth :\>\"", ",", "UseSegWidth", ",", "\"\<\>\"", ",", 
+      "\"\<BestAllFailCount :\>\"", ",", " ", 
+      RowBox[{"BestAllFailCount", "[", 
+       RowBox[{"[", 
+        RowBox[{"1", ",", "1"}], "]"}], "]"}], ",", "\"\<\>\"", ",", 
+      "\"\<% All Fail :\>\"", ",", 
+      RowBox[{"N", "[", 
+       RowBox[{
+        RowBox[{"BestAllFailCount", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ",", "1"}], "]"}], "]"}], "*", 
+        RowBox[{"100", "/", "400"}]}], "]"}], ",", "\"\<\>\"", ",", 
+      "\"\<BestAllFailCountLessThan1\>\"", ",", "BestAllFailCountLessThan1", 
+      ",", "\"\<\>\"", ",", "\"\<% All Fail Less Than 1\>\"", ",", 
+      RowBox[{"N", "[", 
+       RowBox[{"BestAllFailCountLessThan1", "*", 
+        RowBox[{"100", "/", "400"}]}], "]"}], ",", "\"\<\>\"", ",", 
+      "\"\<MKMeanFailCount :\>\"", ",", 
+      RowBox[{"MKMeanFailCount", "[", 
+       RowBox[{"[", 
+        RowBox[{"BestAllFailCount", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], ",", 
+      "\"\<\>\"", ",", "\"\<MKMeanFailCountLessThan1 :\>\"", ",", 
+      "MKMeanFailCountLessThan1", ",", "\"\<\>\"", ",", 
+      "\"\<MKStdFailCount :\>\"", ",", 
+      RowBox[{"MKStdFailCount", "[", 
+       RowBox[{"[", 
+        RowBox[{"BestAllFailCount", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], ",", 
+      "\"\<\>\"", ",", "\"\<MKStdFailCountLessThan1 :\>\"", ",", 
+      "MKStdFailCountLessThan1", ",", "\"\<\>\"", ",", 
+      "\"\<SWFailCount :\>\"", ",", 
+      RowBox[{"SWFailCount", "[", 
+       RowBox[{"[", 
+        RowBox[{"BestAllFailCount", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], ",", 
+      "\"\<\>\"", ",", "\"\<SWFailCountLessThan1 :\>\"", ",", 
+      "SWFailCountLessThan1", ",", "\"\<\>\"", ",", "\"\<VNFailCount :\>\"", 
+      ",", 
+      RowBox[{"VNFailCount", "[", 
+       RowBox[{"[", 
+        RowBox[{"BestAllFailCount", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "]"}], ",", 
+      "\"\<\>\"", ",", "\"\<VNFailCountLessThan1 :\>\"", ",", 
+      "VNFailCountLessThan1"}], "}"}]}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.6101176356072164`*^9, 3.610117810734233*^9}, {
+  3.6101187560143003`*^9, 3.6101188860587378`*^9}, {3.6101189237078915`*^9, 
+  3.610118940931877*^9}, {3.610119061382766*^9, 3.610119088821336*^9}, {
+  3.6101191260414643`*^9, 3.6101191935843277`*^9}, {3.6101192302794266`*^9, 
+  3.6101192659104643`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"SegWidthBest", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"MKTestMeanBest", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", 
+     RowBox[{"MKTestStdBest", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", 
+     RowBox[{"SWTestBest", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", 
+     RowBox[{"VNTestBest", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "2"}], "]"}], "]"}]}], "}"}]}], "*)"}]], "Input",
+ CellChangeTimes->{{3.6082030871067505`*^9, 3.608203109786048*^9}, {
+  3.6082063259055433`*^9, 3.608206328337682*^9}, {3.608207715186005*^9, 
+  3.608207757798443*^9}, {3.6082085396681633`*^9, 3.608208540021183*^9}, {
+  3.6101160253221135`*^9, 3.610116026819199*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+   RowBox[{"OptDataSeg", "=", 
+    RowBox[{
+     RowBox[{"Reap", "[", 
+      RowBox[{
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"a", "=", "1"}], ",", 
+         RowBox[{"a", "\[LessEqual]", 
+          RowBox[{"Length", "[", "SegWidthBest", "]"}]}], ",", 
+         RowBox[{"a", "++"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"WindowDataSeg", "=", 
+           RowBox[{
+            RowBox[{"Reap", "[", 
+             RowBox[{
+              RowBox[{"For", "[", 
+               RowBox[{
+                RowBox[{"window", "=", "1"}], ",", 
+                RowBox[{"window", "\[LessEqual]", "Nwin"}], ",", 
+                RowBox[{"window", "++"}], ",", "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{"Sow", "[", 
+                  RowBox[{"DataSeg", "[", 
+                   RowBox[{"[", 
+                    RowBox[{
+                    RowBox[{"SegWidthBest", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "window"}], "]"}], "]"}], ",", 
+                    "window"}], "]"}], "]"}], "]"}], ";"}]}], 
+               "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+            RowBox[{"[", 
+             RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Sow", "[", "WindowDataSeg", "]"}], ";"}]}], 
+        "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+     RowBox[{"[", 
+      RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";"}], "*)"}]], "Input",
+ CellChangeTimes->{{3.608208556246111*^9, 3.608208576822288*^9}, {
+  3.6082086426880555`*^9, 3.60820877145242*^9}, {3.6082089195968933`*^9, 
+  3.6082089267023*^9}, {3.6082090677273664`*^9, 3.608209080101074*^9}, {
+  3.6083945066380777`*^9, 3.6083945075391293`*^9}, {3.610116038040841*^9, 
+  3.6101160381598473`*^9}, {3.610116749341525*^9, 3.61011674942153*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Mann", "-", 
+    RowBox[{"Kendall", " ", "test", " ", "for", " ", "mean"}], " ", "-", " ", 
+    "Trend"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"OptMKTestMean", "=", 
+     RowBox[{
+      RowBox[{"Reap", "[", 
+       RowBox[{
+        RowBox[{"For", "[", 
+         RowBox[{
+          RowBox[{"a", "=", "1"}], ",", 
+          RowBox[{"a", "\[LessEqual]", 
+           RowBox[{"Length", "[", "OptDataSeg", "]"}]}], ",", 
+          RowBox[{"a", "++"}], ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"OptMKTestMean", "=", 
+            RowBox[{
+             RowBox[{"Reap", "[", 
+              RowBox[{
+               RowBox[{"For", "[", 
+                RowBox[{
+                 RowBox[{"i", "=", "1"}], ",", 
+                 RowBox[{"i", "\[LessEqual]", "Nwin"}], ",", 
+                 RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+                 RowBox[{
+                  RowBox[{"big", "=", "0"}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"n", "=", 
+                   RowBox[{"Length", "[", 
+                    RowBox[{"OptDataSeg", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i", ",", "All", ",", "1"}], "]"}], 
+                    "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"For", "[", 
+                   RowBox[{
+                    RowBox[{"j", "=", "1"}], ",", 
+                    RowBox[{"j", "\[LessEqual]", 
+                    RowBox[{"(", 
+                    RowBox[{"n", "-", "1"}], ")"}]}], ",", 
+                    RowBox[{"j", "++"}], ",", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"For", "[", 
+                    RowBox[{
+                    RowBox[{"k", "=", 
+                    RowBox[{"j", "+", "1"}]}], ",", 
+                    RowBox[{"k", "\[LessEqual]", "n"}], ",", 
+                    RowBox[{"k", "++"}], ",", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"OptDataSeg", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i", ",", "All", ",", "1"}], "]"}], 
+                    "]"}], "[", 
+                    RowBox[{"[", "j", "]"}], "]"}], ">", 
+                    RowBox[{
+                    RowBox[{"OptDataSeg", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i", ",", "All", ",", "1"}], "]"}], 
+                    "]"}], "[", 
+                    RowBox[{"[", "k", "]"}], "]"}]}], ",", 
+                    RowBox[{"big", "=", 
+                    RowBox[{"big", "+", "1"}]}]}], "]"}], ";"}]}], 
+                    "\[IndentingNewLine]", "]"}], ";"}]}], 
+                   "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"S", "=", 
+                   RowBox[{
+                    RowBox[{"2", "*", "big"}], "-", 
+                    RowBox[{"Binomial", "[", 
+                    RowBox[{"n", ",", "2"}], "]"}]}]}], ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"sigmaS", "=", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"n", "*", 
+                    RowBox[{"(", 
+                    RowBox[{"n", "-", "1"}], ")"}], "*", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"2", "*", "n"}], "+", "5"}], ")"}], "/", "18"}]}],
+                     ")"}], "^", "0.5"}]}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"uS", "=", 
+                   RowBox[{"S", "/", "sigmaS"}]}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"pvalue", "=", 
+                   RowBox[{"CDF", "[", 
+                    RowBox[{
+                    RowBox[{"NormalDistribution", "[", "]"}], ",", "uS"}], 
+                    "]"}]}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"Sow", "[", "pvalue", "]"}], ";"}]}], 
+                "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+             RowBox[{"[", 
+              RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Sow", "[", "OptMKTestMean", "]"}], ";"}]}], 
+         "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+      RowBox[{"[", 
+       RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";"}], "*)"}]}]], "Input",
+ CellChangeTimes->{{3.6082078495516906`*^9, 3.608207870759904*^9}, {
+   3.6082079861305027`*^9, 3.6082080197324247`*^9}, {3.6082091944366136`*^9, 
+   3.6082092309407015`*^9}, 3.608394542018101*^9, {3.610116041614045*^9, 
+   3.6101160429811234`*^9}, {3.6101167514826474`*^9, 3.610116751561652*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"OptMKMeanFailCount", "=", 
+   RowBox[{"Total", "[", 
+    RowBox[{"Transpose", "[", 
+     RowBox[{"Boole", "[", 
+      RowBox[{"Negative", "[", 
+       RowBox[{"OptMKTestMean", "-", "0.05"}], "]"}], "]"}], "]"}], "]"}]}], 
+  "*)"}]], "Input",
+ CellChangeTimes->{{3.608209359546057*^9, 3.6082093765020275`*^9}, {
+  3.6082094108249903`*^9, 3.608209455599551*^9}, {3.6082095530211234`*^9, 
+  3.6082095602085342`*^9}, {3.610116045171249*^9, 3.610116045251253*^9}, {
+  3.610116753562766*^9, 3.610116753641771*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"OptMKTestMeanFail", "=", 
+   RowBox[{
+    RowBox[{"Reap", "[", 
+     RowBox[{
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"a", "=", "1"}], ",", 
+        RowBox[{"a", "\[LessEqual]", 
+         RowBox[{"Length", "[", "OptMKTestMean", "]"}]}], ",", 
+        RowBox[{"a", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"OptMKTestMeanFail", "=", 
+          RowBox[{
+           RowBox[{"Reap", "[", 
+            RowBox[{
+             RowBox[{"For", "[", 
+              RowBox[{
+               RowBox[{"i", "=", "1"}], ",", 
+               RowBox[{"i", "\[LessEqual]", "Nwin"}], ",", 
+               RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+               RowBox[{
+                RowBox[{"If", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"OptMKTestMean", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i"}], "]"}], "]"}], "<", "0.05"}], ",", 
+                  RowBox[{"Sow", "[", 
+                   RowBox[{"{", 
+                    RowBox[{"i", ",", 
+                    RowBox[{"OptMKTestMean", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i"}], "]"}], "]"}]}], "}"}], "]"}]}], 
+                 "]"}], ";"}]}], "\[IndentingNewLine]", "]"}], ";"}], "]"}], 
+           "[", 
+           RowBox[{"[", "2", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"Sow", "[", "OptMKTestMeanFail", "]"}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"2", ",", "1"}], "]"}], "]"}]}], "*)"}]], "Input",
+ CellChangeTimes->{{3.60779453830523*^9, 3.60779467205188*^9}, 
+   3.6077949410342646`*^9, {3.6082093192867546`*^9, 3.608209347801386*^9}, {
+   3.6082094799529443`*^9, 3.608209540059382*^9}, 3.608394545236285*^9, {
+   3.6101160470773573`*^9, 3.6101160471763635`*^9}, {3.6101167566279416`*^9, 
+   3.610116756686945*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Mann", "-", 
+    RowBox[{
+    "Kendall", " ", "test", " ", "for", " ", "standard", " ", "deviation"}], 
+    " ", "-", " ", "Trend"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"OptMKTestStd", "=", 
+     RowBox[{
+      RowBox[{"Reap", "[", 
+       RowBox[{
+        RowBox[{"For", "[", 
+         RowBox[{
+          RowBox[{"a", "=", "1"}], ",", 
+          RowBox[{"a", "\[LessEqual]", 
+           RowBox[{"Length", "[", "OptDataSeg", "]"}]}], ",", 
+          RowBox[{"a", "++"}], ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"OptMKTestStd", "=", 
+            RowBox[{
+             RowBox[{"Reap", "[", 
+              RowBox[{
+               RowBox[{"For", "[", 
+                RowBox[{
+                 RowBox[{"i", "=", "1"}], ",", 
+                 RowBox[{"i", "\[LessEqual]", "Nwin"}], ",", 
+                 RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+                 RowBox[{
+                  RowBox[{"big", "=", "0"}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"n", "=", 
+                   RowBox[{"Length", "[", 
+                    RowBox[{"OptDataSeg", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i", ",", "All", ",", "2"}], "]"}], 
+                    "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"For", "[", 
+                   RowBox[{
+                    RowBox[{"j", "=", "1"}], ",", 
+                    RowBox[{"j", "\[LessEqual]", 
+                    RowBox[{"(", 
+                    RowBox[{"n", "-", "1"}], ")"}]}], ",", 
+                    RowBox[{"j", "++"}], ",", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"For", "[", 
+                    RowBox[{
+                    RowBox[{"k", "=", 
+                    RowBox[{"j", "+", "1"}]}], ",", 
+                    RowBox[{"k", "\[LessEqual]", "n"}], ",", 
+                    RowBox[{"k", "++"}], ",", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"OptDataSeg", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i", ",", "All", ",", "2"}], "]"}], 
+                    "]"}], "[", 
+                    RowBox[{"[", "j", "]"}], "]"}], ">", 
+                    RowBox[{
+                    RowBox[{"OptDataSeg", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i", ",", "All", ",", "2"}], "]"}], 
+                    "]"}], "[", 
+                    RowBox[{"[", "k", "]"}], "]"}]}], ",", 
+                    RowBox[{"big", "=", 
+                    RowBox[{"big", "+", "1"}]}]}], "]"}], ";"}]}], 
+                    "\[IndentingNewLine]", "]"}], ";"}]}], 
+                   "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"S", "=", 
+                   RowBox[{
+                    RowBox[{"2", "*", "big"}], "-", 
+                    RowBox[{"Binomial", "[", 
+                    RowBox[{"n", ",", "2"}], "]"}]}]}], ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"sigmaS", "=", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"n", "*", 
+                    RowBox[{"(", 
+                    RowBox[{"n", "-", "1"}], ")"}], "*", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"2", "*", "n"}], "+", "5"}], ")"}], "/", "18"}]}],
+                     ")"}], "^", "0.5"}]}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"uS", "=", 
+                   RowBox[{"S", "/", "sigmaS"}]}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"pvalue", "=", 
+                   RowBox[{"CDF", "[", 
+                    RowBox[{
+                    RowBox[{"NormalDistribution", "[", "]"}], ",", "uS"}], 
+                    "]"}]}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"Sow", "[", "pvalue", "]"}], ";"}]}], 
+                "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+             RowBox[{"[", 
+              RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Sow", "[", "OptMKTestStd", "]"}], ";"}]}], 
+         "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+      RowBox[{"[", 
+       RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";"}], "*)"}]}]], "Input",
+ CellChangeTimes->{{3.607792874364058*^9, 3.60779308856931*^9}, {
+   3.6077932322785296`*^9, 3.607793239369935*^9}, 3.607793376421774*^9, 
+   3.607794681610427*^9, {3.608209572768253*^9, 3.6082096924490986`*^9}, 
+   3.6083945494155245`*^9, {3.6101160492024794`*^9, 3.6101160493004847`*^9}, {
+   3.6101167604061575`*^9, 3.6101167604851627`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"OptMKStdFailCount", "=", 
+   RowBox[{"Total", "[", 
+    RowBox[{"Transpose", "[", 
+     RowBox[{"Boole", "[", 
+      RowBox[{"Negative", "[", 
+       RowBox[{"OptMKTestStd", "-", "0.05"}], "]"}], "]"}], "]"}], "]"}]}], 
+  "*)"}]], "Input",
+ CellChangeTimes->{{3.608209359546057*^9, 3.6082093765020275`*^9}, {
+  3.6082094108249903`*^9, 3.608209455599551*^9}, {3.6082095530211234`*^9, 
+  3.6082095602085342`*^9}, {3.608209709544076*^9, 3.608209713613309*^9}, {
+  3.6101160516696205`*^9, 3.610116051768626*^9}, {3.6101167655434513`*^9, 
+  3.610116765622456*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"OptMKTestStdFail", "=", 
+   RowBox[{
+    RowBox[{"Reap", "[", 
+     RowBox[{
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"a", "=", "1"}], ",", 
+        RowBox[{"a", "\[LessEqual]", 
+         RowBox[{"Length", "[", "OptMKTestStd", "]"}]}], ",", 
+        RowBox[{"a", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"OptMKTestStdFail", "=", 
+          RowBox[{
+           RowBox[{"Reap", "[", 
+            RowBox[{
+             RowBox[{"For", "[", 
+              RowBox[{
+               RowBox[{"i", "=", "1"}], ",", 
+               RowBox[{"i", "\[LessEqual]", "Nwin"}], ",", 
+               RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+               RowBox[{
+                RowBox[{"If", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"OptMKTestStd", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i"}], "]"}], "]"}], "<", "0.05"}], ",", 
+                  RowBox[{"Sow", "[", 
+                   RowBox[{"{", 
+                    RowBox[{"i", ",", 
+                    RowBox[{"OptMKTestStd", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i"}], "]"}], "]"}]}], "}"}], "]"}]}], 
+                 "]"}], ";"}]}], "\[IndentingNewLine]", "]"}], ";"}], "]"}], 
+           "[", 
+           RowBox[{"[", "2", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"Sow", "[", "OptMKTestStdFail", "]"}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"2", ",", "1"}], "]"}], "]"}]}], "*)"}]], "Input",
+ CellChangeTimes->{{3.60779453830523*^9, 3.60779467205188*^9}, 
+   3.6077949410342646`*^9, {3.6082093192867546`*^9, 3.608209347801386*^9}, {
+   3.6082094799529443`*^9, 3.608209540059382*^9}, {3.6082097195476484`*^9, 
+   3.6082097391207676`*^9}, 3.6083945821003942`*^9, {3.6101160537547398`*^9, 
+   3.6101160538737464`*^9}, {3.6101167632123184`*^9, 3.610116763312324*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Shapiro", " ", "Wilk", " ", "test", " ", "for", " ", "normality"}], " ", 
+   "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"OptSWTest", "=", 
+     RowBox[{
+      RowBox[{"Reap", "[", 
+       RowBox[{
+        RowBox[{"For", "[", 
+         RowBox[{
+          RowBox[{"a", "=", "1"}], ",", 
+          RowBox[{"a", "\[LessEqual]", 
+           RowBox[{"Length", "[", "OptDataSeg", "]"}]}], ",", 
+          RowBox[{"a", "++"}], ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"OptSWTest", "=", 
+            RowBox[{
+             RowBox[{"Reap", "[", 
+              RowBox[{
+               RowBox[{"For", "[", 
+                RowBox[{
+                 RowBox[{"i", "=", "1"}], ",", 
+                 RowBox[{"i", "\[LessEqual]", "Nwin"}], ",", 
+                 RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+                 RowBox[{
+                  RowBox[{"pvalue", "=", 
+                   RowBox[{"DistributionFitTest", "[", 
+                    RowBox[{
+                    RowBox[{"OptDataSeg", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i", ",", "All", ",", "1"}], "]"}], 
+                    "]"}], ",", "Automatic", ",", "\"\<ShapiroWilk\>\""}], 
+                    "]"}]}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"Sow", "[", "pvalue", "]"}], ";"}]}], 
+                "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+             RowBox[{"[", 
+              RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Sow", "[", "OptSWTest", "]"}], ";"}]}], 
+         "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+      RowBox[{"[", 
+       RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";"}], "*)"}]}]], "Input",
+ CellChangeTimes->{{3.6078558242405853`*^9, 3.6078559052172165`*^9}, {
+   3.6082074215062075`*^9, 3.6082074226452727`*^9}, {3.608207580454299*^9, 
+   3.608207582621423*^9}, {3.6082097528065505`*^9, 3.6082097991612015`*^9}, 
+   3.6083945864006395`*^9, {3.610116056663906*^9, 3.610116056762912*^9}, {
+   3.610116767529565*^9, 3.6101167676885743`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"OptSWFailCount", "=", 
+   RowBox[{"Total", "[", 
+    RowBox[{"Transpose", "[", 
+     RowBox[{"Boole", "[", 
+      RowBox[{"Negative", "[", 
+       RowBox[{"OptSWTest", "-", "0.05"}], "]"}], "]"}], "]"}], "]"}]}], 
+  "*)"}]], "Input",
+ CellChangeTimes->{{3.608209359546057*^9, 3.6082093765020275`*^9}, {
+  3.6082094108249903`*^9, 3.608209455599551*^9}, {3.6082095530211234`*^9, 
+  3.6082095602085342`*^9}, {3.608209709544076*^9, 3.608209713613309*^9}, {
+  3.608209815487136*^9, 3.608209821485479*^9}, {3.610116059198051*^9, 
+  3.6101160592580547`*^9}, {3.610116771216776*^9, 3.610116771316782*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"OptSWTestFail", "=", 
+   RowBox[{
+    RowBox[{"Reap", "[", 
+     RowBox[{
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"a", "=", "1"}], ",", 
+        RowBox[{"a", "\[LessEqual]", 
+         RowBox[{"Length", "[", "OptSWTest", "]"}]}], ",", 
+        RowBox[{"a", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"OptSWTestFail", "=", 
+          RowBox[{
+           RowBox[{"Reap", "[", 
+            RowBox[{
+             RowBox[{"For", "[", 
+              RowBox[{
+               RowBox[{"i", "=", "1"}], ",", 
+               RowBox[{"i", "\[LessEqual]", "Nwin"}], ",", 
+               RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+               RowBox[{
+                RowBox[{"If", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"OptSWTest", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i"}], "]"}], "]"}], "<", "0.05"}], ",", 
+                  RowBox[{"Sow", "[", 
+                   RowBox[{"{", 
+                    RowBox[{"i", ",", 
+                    RowBox[{"OptSWTest", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i"}], "]"}], "]"}]}], "}"}], "]"}]}], 
+                 "]"}], ";"}]}], "\[IndentingNewLine]", "]"}], ";"}], "]"}], 
+           "[", 
+           RowBox[{"[", "2", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"Sow", "[", "OptSWTestFail", "]"}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"2", ",", "1"}], "]"}], "]"}]}], "*)"}]], "Input",
+ CellChangeTimes->{{3.60779453830523*^9, 3.60779467205188*^9}, 
+   3.6077949410342646`*^9, {3.6082093192867546`*^9, 3.608209347801386*^9}, {
+   3.6082094799529443`*^9, 3.608209540059382*^9}, {3.6082097195476484`*^9, 
+   3.6082097391207676`*^9}, {3.608209847799984*^9, 3.6082098781507196`*^9}, 
+   3.608394587071678*^9, {3.610116061502183*^9, 3.610116061820201*^9}, {
+   3.61011677303388*^9, 3.610116773192889*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"von", " ", "Neumann", " ", "test"}], " ", "-", " ", 
+    RowBox[{"Serial", " ", "Correlation"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"OptVNTest", "=", 
+     RowBox[{
+      RowBox[{"Reap", "[", 
+       RowBox[{
+        RowBox[{"For", "[", 
+         RowBox[{
+          RowBox[{"a", "=", "1"}], ",", 
+          RowBox[{"a", "\[LessEqual]", 
+           RowBox[{"Length", "[", "OptDataSeg", "]"}]}], ",", 
+          RowBox[{"a", "++"}], ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"OptVNTest", "=", 
+            RowBox[{
+             RowBox[{"Reap", "[", 
+              RowBox[{
+               RowBox[{"For", "[", 
+                RowBox[{
+                 RowBox[{"i", "=", "1"}], ",", 
+                 RowBox[{"i", "\[LessEqual]", "Nwin"}], ",", 
+                 RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+                 RowBox[{
+                  RowBox[{"sum", "=", "0"}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"n", "=", 
+                   RowBox[{"Length", "[", 
+                    RowBox[{"OptDataSeg", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i", ",", "All", ",", "1"}], "]"}], 
+                    "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"For", "[", 
+                   RowBox[{
+                    RowBox[{"j", "=", "1"}], ",", 
+                    RowBox[{"j", "\[LessEqual]", 
+                    RowBox[{"(", 
+                    RowBox[{"n", "-", "1"}], ")"}]}], ",", 
+                    RowBox[{"j", "++"}], ",", "\[IndentingNewLine]", 
+                    RowBox[{"sum", "=", 
+                    RowBox[{"sum", "+", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"OptDataSeg", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i", ",", "All", ",", "1"}], "]"}], 
+                    "]"}], "[", 
+                    RowBox[{"[", 
+                    RowBox[{"j", "+", "1"}], "]"}], "]"}], "-", 
+                    RowBox[{
+                    RowBox[{"OptDataSeg", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i", ",", "All", ",", "1"}], "]"}], 
+                    "]"}], "[", 
+                    RowBox[{"[", "j", "]"}], "]"}]}], ")"}], "^", "2"}]}]}]}],
+                    "]"}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"qsquared", "=", 
+                   RowBox[{"sum", "/", 
+                    RowBox[{"(", 
+                    RowBox[{"2", "*", 
+                    RowBox[{"(", 
+                    RowBox[{"n", "-", "1"}], ")"}]}], ")"}]}]}], ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"r", "=", 
+                   RowBox[{"qsquared", "/", 
+                    RowBox[{"Variance", "[", 
+                    RowBox[{"OptDataSeg", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i", ",", "All", ",", "1"}], "]"}], 
+                    "]"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"sigmar", "=", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"1", "+", 
+                    RowBox[{"1", "/", 
+                    RowBox[{"(", 
+                    RowBox[{"n", "-", "1"}], ")"}]}]}], ")"}], "/", 
+                    RowBox[{"(", 
+                    RowBox[{"n", "+", "1"}], ")"}]}], ")"}], "^", "0.5"}]}], 
+                  ";", "\[IndentingNewLine]", 
+                  RowBox[{"ur", "=", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"r", "-", "1"}], ")"}], "/", "sigmar"}]}], ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"pvalue", "=", 
+                   RowBox[{"CDF", "[", 
+                    RowBox[{
+                    RowBox[{"NormalDistribution", "[", "]"}], ",", "ur"}], 
+                    "]"}]}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"Sow", "[", "pvalue", "]"}], ";"}]}], 
+                "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+             RowBox[{"[", 
+              RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Sow", "[", "OptVNTest", "]"}], ";"}]}], 
+         "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+      RowBox[{"[", 
+       RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";"}], "*)"}]}]], "Input",
+ CellChangeTimes->{{3.607792009340582*^9, 3.607792185471656*^9}, 
+   3.6077922175904927`*^9, {3.607792254679614*^9, 3.607792263085095*^9}, {
+   3.6077927091736097`*^9, 3.607792775195386*^9}, {3.607792894524211*^9, 
+   3.6077928990914726`*^9}, 3.6077938157279015`*^9, 3.607794756575714*^9, {
+   3.607794927276478*^9, 3.6077949329068003`*^9}, {3.608209890288414*^9, 
+   3.608209966392767*^9}, {3.608210041483062*^9, 3.6082100501355567`*^9}, 
+   3.6083946367525196`*^9, {3.610116064483353*^9, 3.6101160645613575`*^9}, {
+   3.6101167764680767`*^9, 3.61011677652808*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"OptVNFailCount", "=", 
+   RowBox[{"Total", "[", 
+    RowBox[{"Transpose", "[", 
+     RowBox[{"Boole", "[", 
+      RowBox[{"Negative", "[", 
+       RowBox[{"OptVNTest", "-", "0.05"}], "]"}], "]"}], "]"}], "]"}]}], 
+  "*)"}]], "Input",
+ CellChangeTimes->{{3.608209359546057*^9, 3.6082093765020275`*^9}, {
+  3.6082094108249903`*^9, 3.608209455599551*^9}, {3.6082095530211234`*^9, 
+  3.6082095602085342`*^9}, {3.608209709544076*^9, 3.608209713613309*^9}, {
+  3.608209815487136*^9, 3.608209821485479*^9}, {3.608209981404626*^9, 
+  3.608209985889882*^9}, {3.6101160665964737`*^9, 3.61011606669648*^9}, {
+  3.6101167789462185`*^9, 3.6101167790652246`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"OptVNTestFail", "=", 
+   RowBox[{
+    RowBox[{"Reap", "[", 
+     RowBox[{
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"a", "=", "1"}], ",", 
+        RowBox[{"a", "\[LessEqual]", 
+         RowBox[{"Length", "[", "OptVNTest", "]"}]}], ",", 
+        RowBox[{"a", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"OptVNTestFail", "=", 
+          RowBox[{
+           RowBox[{"Reap", "[", 
+            RowBox[{
+             RowBox[{"For", "[", 
+              RowBox[{
+               RowBox[{"i", "=", "1"}], ",", 
+               RowBox[{"i", "\[LessEqual]", "Nwin"}], ",", 
+               RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+               RowBox[{
+                RowBox[{"If", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"OptVNTest", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i"}], "]"}], "]"}], "<", "0.05"}], ",", 
+                  RowBox[{"Sow", "[", 
+                   RowBox[{"{", 
+                    RowBox[{"i", ",", 
+                    RowBox[{"OptVNTest", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"a", ",", "i"}], "]"}], "]"}]}], "}"}], "]"}]}], 
+                 "]"}], ";"}]}], "\[IndentingNewLine]", "]"}], ";"}], "]"}], 
+           "[", 
+           RowBox[{"[", "2", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"Sow", "[", "OptVNTestFail", "]"}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";"}], "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"2", ",", "1"}], "]"}], "]"}]}], "*)"}]], "Input",
+ CellChangeTimes->{{3.60779453830523*^9, 3.60779467205188*^9}, 
+   3.6077949410342646`*^9, {3.6082093192867546`*^9, 3.608209347801386*^9}, {
+   3.6082094799529443`*^9, 3.608209540059382*^9}, {3.6082097195476484`*^9, 
+   3.6082097391207676`*^9}, {3.608209847799984*^9, 3.6082098781507196`*^9}, {
+   3.608210065809453*^9, 3.6082100813393416`*^9}, 3.6083945924569864`*^9, {
+   3.6101160684475803`*^9, 3.6101160685265846`*^9}, {3.6101167809923353`*^9, 
+   3.6101167810513387`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"AllFailCount", "=", 
+   RowBox[{
+   "OptMKMeanFailCount", "+", "OptMKStdFailCount", "+", "OptSWFailCount", "+",
+     "OptVNFailCount"}]}], "*)"}]], "Input",
+ CellChangeTimes->{{3.6082101156043015`*^9, 3.6082101529554377`*^9}, {
+  3.6101160712757416`*^9, 3.6101160713557463`*^9}, {3.610116782959448*^9, 
+  3.610116783099456*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+   RowBox[{"f1", "[", "a_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"#", ",", 
+       RowBox[{"First", "@", 
+        RowBox[{
+         RowBox[{"SparseArray", "[", 
+          RowBox[{"UnitStep", "[", 
+           RowBox[{"#", "-", "a"}], "]"}], "]"}], "[", 
+         "\"\<AdjacencyLists\>\"", "]"}]}]}], "}"}], "&"}], "@", 
+    RowBox[{"Min", "@", "a"}]}]}], "*)"}]], "Input",
+ CellChangeTimes->{{3.6081679654692993`*^9, 3.6081679654722996`*^9}, {
+  3.6082104838733654`*^9, 3.6082104872775598`*^9}, {3.608210564489976*^9, 
+  3.608210564922001*^9}, {3.610116083431437*^9, 3.6101160835314426`*^9}, {
+  3.610116785481592*^9, 3.610116785561597*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"BestCombo", "=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"f1", " ", "/@", " ", 
+      RowBox[{"{", "AllFailCount", "}"}]}], ")"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"1", ",", "2"}], "]"}], "]"}]}], "*)"}]], "Input",
+ CellChangeTimes->{{3.6082103833346148`*^9, 3.6082104558677635`*^9}, {
+  3.608210489706699*^9, 3.6082104911577816`*^9}, {3.6082105212455025`*^9, 
+  3.6082106004530334`*^9}, {3.6101160779311223`*^9, 3.610116078030128*^9}, {
+  3.6101167873316975`*^9, 3.6101167874107027`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+   RowBox[{"SegWidthBest", "[", 
+    RowBox[{"[", "BestCombo", "]"}], "]"}], "+", "MinSegWidth", "-", "1"}], 
+  "*)"}]], "Input",
+ CellChangeTimes->{{3.608211409974335*^9, 3.608211415903674*^9}, 
+   3.6083902012433467`*^9, {3.610116080725282*^9, 3.610116080805287*^9}, {
+   3.610116789608828*^9, 3.610116789668832*^9}}]
+},
+WindowSize->{814, 633},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+FrontEndVersion->"10.0 for Microsoft Windows (64-bit) (September 9, 2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 76, 1, 31, "Input"],
+Cell[CellGroupData[{
+Cell[658, 25, 104, 2, 31, "Input"],
+Cell[765, 29, 1877, 26, 52, "Output"]
+}, Open  ]],
+Cell[2657, 58, 189, 4, 31, "Input"],
+Cell[2849, 64, 1307, 34, 132, "Input"],
+Cell[CellGroupData[{
+Cell[4181, 102, 234, 5, 31, "Input"],
+Cell[4418, 109, 1720, 24, 31, "Output"]
+}, Open  ]],
+Cell[6153, 136, 701, 11, 31, "Input"],
+Cell[6857, 149, 287, 8, 31, "Input"],
+Cell[CellGroupData[{
+Cell[7169, 161, 290, 7, 31, "Input"],
+Cell[7462, 170, 504, 7, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8003, 182, 336, 8, 31, "Input"],
+Cell[8342, 192, 597, 8, 31, "Output"]
+}, Open  ]],
+Cell[8954, 203, 5964, 137, 352, "Input"],
+Cell[CellGroupData[{
+Cell[14943, 344, 159, 3, 31, "Input"],
+Cell[15105, 349, 664, 9, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15806, 363, 237, 6, 31, "Input"],
+Cell[16046, 371, 615, 9, 31, "Output"]
+}, Open  ]],
+Cell[16676, 383, 784, 16, 52, "Input"],
+Cell[17463, 401, 633, 14, 52, "Input"],
+Cell[18099, 417, 4554, 103, 392, "Input"],
+Cell[22656, 522, 480, 14, 31, "Input"],
+Cell[23139, 538, 662, 13, 52, "Input"],
+Cell[23804, 553, 1466, 37, 72, "Input"],
+Cell[25273, 592, 4701, 106, 392, "Input"],
+Cell[29977, 700, 279, 6, 31, "Input"],
+Cell[30259, 708, 1530, 38, 72, "Input"],
+Cell[31792, 748, 1971, 47, 172, "Input"],
+Cell[33766, 797, 319, 7, 31, "Input"],
+Cell[34088, 806, 1624, 39, 72, "Input"],
+Cell[35715, 847, 4998, 112, 352, "Input"],
+Cell[40716, 961, 275, 6, 31, "Input"],
+Cell[40994, 969, 1446, 37, 72, "Input"],
+Cell[42443, 1008, 1173, 28, 92, "Input"],
+Cell[43619, 1038, 995, 26, 92, "Input"],
+Cell[44617, 1066, 1151, 28, 92, "Input"],
+Cell[45771, 1096, 1099, 27, 92, "Input"],
+Cell[CellGroupData[{
+Cell[46895, 1127, 355, 8, 31, "Input"],
+Cell[47253, 1137, 4329, 60, 292, "Output"]
+}, Open  ]],
+Cell[51597, 1200, 582, 16, 31, "Input"],
+Cell[CellGroupData[{
+Cell[52204, 1220, 217, 4, 31, "Input"],
+Cell[52424, 1226, 592, 10, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[53053, 1241, 309, 7, 31, "Input"],
+Cell[53365, 1250, 291, 4, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[53693, 1259, 1597, 42, 92, "Input"],
+Cell[55293, 1303, 600, 16, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[55930, 1324, 1765, 44, 112, "Input"],
+Cell[57698, 1370, 246, 3, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[57981, 1378, 253, 6, 31, "Input"],
+Cell[58237, 1386, 261, 4, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[58535, 1395, 1493, 40, 92, "Input"],
+Cell[60031, 1437, 438, 12, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[60506, 1454, 1812, 45, 112, "Input"],
+Cell[62321, 1501, 222, 4, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[62580, 1510, 250, 6, 31, "Input"],
+Cell[62833, 1518, 267, 4, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[63137, 1527, 1481, 40, 92, "Input"],
+Cell[64621, 1569, 683, 18, 52, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[65341, 1592, 1753, 44, 112, "Input"],
+Cell[67097, 1638, 147, 2, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[67281, 1645, 250, 6, 31, "Input"],
+Cell[67534, 1653, 260, 4, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[67831, 1662, 1479, 40, 92, "Input"],
+Cell[69313, 1704, 1496, 38, 92, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[70846, 1747, 1698, 43, 112, "Input"],
+Cell[72547, 1792, 168, 2, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[72752, 1799, 369, 10, 31, "Input"],
+Cell[73124, 1811, 511, 7, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[73672, 1823, 276, 5, 72, "Input"],
+Cell[73951, 1830, 119, 2, 31, "Output"]
+}, Open  ]],
+Cell[74085, 1835, 2663, 59, 232, "Input"],
+Cell[76751, 1896, 816, 20, 52, "Input"],
+Cell[77570, 1918, 1901, 44, 132, "Input"],
+Cell[79474, 1964, 4810, 106, 392, "Input"],
+Cell[84287, 2072, 549, 12, 31, "Input"],
+Cell[84839, 2086, 1968, 46, 132, "Input"],
+Cell[86810, 2134, 4881, 108, 372, "Input"],
+Cell[91694, 2244, 600, 13, 31, "Input"],
+Cell[92297, 2259, 2014, 46, 132, "Input"],
+Cell[94314, 2307, 2176, 50, 172, "Input"],
+Cell[96493, 2359, 638, 13, 31, "Input"],
+Cell[97134, 2374, 2039, 47, 132, "Input"],
+Cell[99176, 2423, 5182, 114, 332, "Input"],
+Cell[104361, 2539, 690, 14, 31, "Input"],
+Cell[105054, 2555, 2102, 48, 132, "Input"],
+Cell[107159, 2605, 369, 8, 31, "Input"],
+Cell[107531, 2615, 716, 18, 31, "Input"],
+Cell[108250, 2635, 538, 12, 31, "Input"],
+Cell[108791, 2649, 360, 8, 31, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)

@@ -1,0 +1,102 @@
+MOLTEMPLATE_PATH="/gpfs/home/tub179/work/moltemplate/common:$MOLTEMPLATE_PATH"
+PATH="/gpfs/home/tub179/work/moltemplate/src:$PATH"
+moltemplate.sh -atomstyle "full" system.lt -nocheck
+
+topo readlammpsdata system.data full
+pbc wrap -compound res -all
+
+pbc box
+
+python setup.py install --user
+
+find ~/scratch/. -exec touch {} \;
+
+qsub -I -l nodes=1 -l walltime=10:00:00 -q lionxj-kaf2
+
+qselect -u ayn5129 -s Q | xargs qdel
+qselect -u ayn5129 | xargs qdel
+
+qselect -u tub179 -s Q | xargs qdel
+qselect -u tub179 | xargs qdel
+
+dos2unix slurm.txt
+
+mol modstyle    0  18  VDW
+mol modcolor    0  18  Chain
+mol modselect   0  18  name 11
+mol modmaterial 0  18  Diffuse
+
+PATH="/gpfs/home/tub179/scratch/Research_scratch/Tools/wham/wham:$PATH"
+wham 0 45 100 0.001 300.0 0 metafile1.txct whamoutput.txt 1000 1234
+
+PATH="/gpfs/home/tub179/work/Research:$PATH"
+
+PATH="D:\tonnam_backup\Research_scratch\Research_work:$PATH"
+
+ui.out -ui -T 300 -min 0 -max 50 -n 2000 -u kcal -seg 2600 -ss 32000 -r -1 -v 2 > log.txt
+
+ui.out -ui -T 433 -min -5 -max 50 -n 2000 -u kcal -seg 20 -ss 9000 -r -1 -v 2 > log.txt
+
+rm -r */Ag_O1X5.5_O2X0.55.eam.fs
+
+du -sh *_window/thermo.lammps
+
+showstart <job_id>
+checkjob <job_id>
+
+module load python/2.7.3
+module load vasp5/5.3.5
+
+PATH="/gpfs/home/tub179/scratch/Research_scratch/Tools/packmol:$PATH"
+
+
+python -i ~/work/Research/Tools/Pizza/src/pizza.py
+
+for f in *.lt; do
+    mv -f "$f" "$f.backup"
+    tr -d '\r' < "$f.backup" > "$f"
+Done
+
+vi <filename>
+press "insert"
+press "esc"
+:x = exit without saving
+:wq = exit with saving
+"G" = move to end-of-file
+":G" = delete to end-of-file
+
+cd E:
+
+cp /gpfs/home/ayn5129/scratch/Tools/Scripts/combo_input_stat_ui_parse_1ns.py .
+cp /gpfs/home/ayn5129/scratch/Tools/Scripts/combo_input_stat_ui_parse_2ns.py .
+cp /gpfs/home/ayn5129/scratch/Tools/Scripts/check_finish2.py .
+
+cp /gpfs/scratch/tub179/Research_scratch/Tools/Scripts/combo_input_stat_ui_parse_2ns.py .
+cp /gpfs/scratch/tub179/Research_scratch/Tools/Scripts/combo_input_stat_ui_parse_1ns.py .
+
+cp /gpfs/scratch/tub179/Research_scratch/Tools/Scripts/ui_input_write.py .
+cp /gpfs/scratch/tub179/Research_scratch/Tools/Scripts/ui_input_write_2ns.py .
+cp /gpfs/scratch/tub179/Research_scratch/Tools/Scripts/stats_test.py .
+cp /gpfs/scratch/tub179/Research_scratch/Tools/Scripts/stats_test_del.py .
+cp /gpfs/scratch/tub179/Research_scratch/Tools/Scripts/check_finish2.py .
+cp /gpfs/scratch/tub179/Research_scratch/Tools/Scripts/parse_log.py .
+
+
+cp /home1/03207/tub179/scripts/combo_input_stat_ui_parse_1ns.py .
+cp /home1/03207/tub179/scripts/combo_input_stat_ui_parse_2ns.py .
+
+cp /home1/03207/tub179/scripts/ui_input_write.py .
+cp /home1/03207/tub179/scripts/ui_input_write_2ns.py .
+cp /home1/03207/tub179/scripts/stats_test.py .
+cp /home1/03207/tub179/scripts/check_finish2.py .
+cp /home1/03207/tub179/scripts/parse_log.py .
+
+python f2py.py -c --fcompiler=gfortran --compiler=mingw32 -m uifortran umbrella_integration_nvalmax.f90
+
+mkdir auto3/data
+cp data/* auto3/data
+
+studiO1993
+
+“Frozen” -inurl:(htm|html|php|pls|txt) intitle:index.of “last modified” (mkv|mp4|avi)
+“Rather Be” -inurl:(htm|html|php|pls|txt) intitle:index.of “last modified” (mp3|wma|aac|flac)
